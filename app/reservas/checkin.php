@@ -15,7 +15,33 @@ $acomodacao = mysqli_fetch_assoc($resacom);
 $sqlClientes = "SELECT id, nome FROM clientes WHERE ativo = 1 ORDER BY nome";
 $resClientes = mysqli_query($con, $sqlClientes);
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cliente_id = $_POST['cliente_id'];
+    $data_checkin = $_POST['data_checkin'];
+    $data_checkout = $_POST['data_checkout'];
 
+    $sqlcheck = "SELECT * FROM hospedagens where acomodacao_id = $acomodacao_id AND status IN ('reservado' , 'hospedado') AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
+
+     $resCheck = mysqli_query($con, $sqlcheck);
+
+    if (mysqli_num_rows($resCheck) > 0) {
+        echo "Acomodação indisponível neste período";
+    } else {
+        
+        session_start();
+        $funcionario_id = $_SESSION['funcionario_id'] ?? 1;
+
+        
+        $sqlInsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status , stacionamento_id)
+                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'hospedado')";
+
+        if (mysqli_query($con, $sqlInsert)) {
+            echo "Check-in realizado com sucesso!";
+        } else {
+            echo "Erro ao realizar check-in: " . mysqli_error($con);
+        }
+    }
+}
 
 
 ?>

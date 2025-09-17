@@ -1,4 +1,5 @@
 <?php
+include '../config/config.php';
 session_start();
 
 if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
@@ -21,12 +22,14 @@ if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
                 <h2>Painel</h2>
             </div>
             <ul class="nav-links">
-                <li><a href="painel.php">Home</a></li>
-                <li><a href="cadastrar-f.php">Cadastrar Funcionário</a></li>
+                <li><a href="<?= BASEF ?>/app/funcionarios/painel.php">Home</a></li>
+                <li><a href="<?= BASEF ?>/app/funcionarios/cadastrar-f.php">Cadastrar Funcionário</a></li>
                 <li><a href="listar-f.php">Listar Funcionários</a></li>
                 <li><a href="../clientes/listar-c.php">Lista de Clientes</a></li>
-                <li><a href="../clientes/cadastrar-clientes.php">Cadastrar Clientes</a></li>
+                <li><a href="<?= BASEF ?>/app/clientes/cadastrar-clientes.php">Cadastrar Clientes</a></li>
                 <li><a href="../reservas/acomodacoes.php">Realizar Reserva</a></li>
+                <li><a href="../frigobar/itens-frigobar.php">Tabela frigobar</a></li>
+
                 <li><a href="../../login/logout.php">Sair</a></li>
             </ul>
         </nav>
