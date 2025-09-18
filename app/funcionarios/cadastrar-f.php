@@ -37,8 +37,9 @@
 
             <div class="perfil">
                 <select name="perfil" class="perfil">
-                    <option value="admin">Administrador</option>
                     <option value="user">Funcionário</option>
+                    <option value="admin">Administrador</option>
+                    
                 </select>
             </div>
             

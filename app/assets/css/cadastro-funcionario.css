@@ -92,12 +92,13 @@ body{
 
 
 .perfil {
+    background-color: #333;
     margin-left: 22%;
     border: none;
     border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #ffffff;
     font-weight: 500;
     margin-top: 20px;
 }

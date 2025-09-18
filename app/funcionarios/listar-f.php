@@ -68,7 +68,7 @@
             <td><?php echo $reg_date ?></td>
             <td><?php echo $up_date ?></td>
             <td><a href="editar-f.php?id=<?php echo $id ?>"><button>Editar</button></a></td>
-            <td><a href="excluir-f.php?id=<?php echo $id ?>"><button>Excluir</button></a></td>
+            <td><a href="excluir-f.php?id=<?php echo $id ?>"><button>Inativar</button></a></td>
         </tr>
         <?php
         }

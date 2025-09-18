@@ -31,7 +31,7 @@
         <h1>Cadastrar Cliente</h1>
 
         <form action="salvar-c.php" method="post">
-    <!-- Linha 1: Nome e Data de Nascimento -->
+    
     <div class="input-row">
         <div class="input-box">
             <label>Nome</label>
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <!-- Linha 2: CPF e Email -->
+    
     <div class="input-row">
         <div class="input-box">
             <label>CPF</label>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <!-- Linha 3: Telefone -->
+    
     <div class="input-row">
         <div class="input-box2">
             <label>Telefone</label>
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <!-- Linha 4: Estado e Cidade -->
+   
     <div class="input-row">
         <div class="input-box2">
             <label>Estado</label>

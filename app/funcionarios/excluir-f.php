@@ -8,13 +8,14 @@
 <body>
      <?php
     include '../config/conexao.php';
+
     $id_funcionario = $_GET['id'];
-    $sql = "DELETE FROM funcionarios WHERE id = $id_funcionario";
+    $sql = "UPDATE funcionarios set Stat = '0' WHERE id = $id_funcionario";
     $deletar = mysqli_query($con, $sql);    
     if($deletar){
-        echo "<script>alert('Deletado com sucesso!'); location.href='listar-f.php';</script>";
+        echo "<script>alert('Inativado com sucesso!'); location.href='listar-f.php';</script>";
     } else {
-        echo "<script>alert('Erro ao deletar!'); location.href='listar-f.php';</script>";
+        echo "<script>alert('Erro ao Inativar!'); location.href='listar-f.php';</script>";
     }
 ?>
 </body>

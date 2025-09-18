@@ -72,7 +72,8 @@ function insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone,
     $query = (mysqli_query($con, $sql));
 
     if ($query) {
-         $msg = "cliente cadastrado com sucesso! ";
+        
+        $msg = "cliente cadastrado com sucesso! ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
     } else {
          $msg = "Erro ao cadastrar cliente! ";
