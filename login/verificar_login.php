@@ -13,7 +13,7 @@
      $row = mysqli_fetch_array($result);
      $_SESSION['perfil'] = $row['perfil'];
     $_SESSION['email'] = $row['email'];
-     header('Location:../app/funcionarios/painel.php');
+     header('Location:../app/funcionarios/home.php');
     } else {
         $msg="Usuário ou senha inválidos" . mysqli_error($con);
         session_destroy();

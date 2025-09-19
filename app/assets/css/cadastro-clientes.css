@@ -108,3 +108,12 @@ body {
     color: white;
     transition: 0.4s;
 }
+
+
+.mensagem {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    
+}
+

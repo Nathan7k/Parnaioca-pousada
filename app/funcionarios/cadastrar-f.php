@@ -10,7 +10,7 @@
 </head>
 <?php
     include '../config/conexao.php';
-    include '../funcionarios/painel.php';
+    include '../funcionarios/navbar.php';
 
     if(isset($_GET['msg'])){
         echo $_GET['msg'];

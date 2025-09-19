@@ -72,11 +72,11 @@ function insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone,
     $query = (mysqli_query($con, $sql));
 
     if ($query) {
-        
+
         $msg = "cliente cadastrado com sucesso! ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
     } else {
-         $msg = "Erro ao cadastrar cliente! ";
+        $msg = "Erro ao cadastrar cliente! ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
     }
 }
@@ -85,40 +85,42 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
 {
 
     if (empty($nome) || empty($data_nascimento) || empty($cpf) || empty($email) || empty($telefone) || empty($estado) || empty($cidade)) {
-        $msg =  "Todos os campos são obrigatórios.";
-        return $msg;
+         $msg = "todos os campos são obrigatórios ";
+        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+        return false;
     }
 
-    if (strlen($nome) < 3) {
-        $msg =  "O nome deve ter pelo menos 3 caracteres.";
-        return $msg;
+    if (strlen($nome) < 8) {
+        $msg = "o nome deve ter pelo menos 8 caracteres ";
+        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+        return false;
     }
     if (!preg_match("/^[a-zA-ZÀ-ÿ\s]+$/", $nome)) {
-        $msg =  "O nome só pode conter letras e espaços.";
-        return $msg;
+         $msg = "o nome só pode conter letras ";
+        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+        return false;
     }
 
-    $sql = "SELECT id FROM clientes WHERE cpf='$cpf'";
+    $sql = "SELECT cpf FROM clientes WHERE cpf='$cpf'";
     $res = mysqli_query($con, $sql);
-    if (mysqli_num_rows($res) > 0) {
-        $msg =  "Este CPF já está cadastrado.";
-        return $msg;
+    $numrows = mysqli_num_rows($res);
+    
+    
+    if ($numrows >= 1) {
+        $msg = "o CPF informado já está cadastrado ";
+        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+        return False;
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $msg =  "email inválido.";
-        return $msg;
+         $msg = "email inválido";
+        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+        return false;
     }
+
+    insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade);
+     $msg = "Cliente cadastrado com sucesso ";
+        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
 
     return true;
 }
-
-
-
-
-
-
-
-
-  
-

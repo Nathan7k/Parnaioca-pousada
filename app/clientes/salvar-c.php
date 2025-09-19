@@ -14,11 +14,6 @@
     $cidade = $_POST['cidade'];
 
     
-    $validardados = validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade);
-    if($validardados == true){
-        insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade);
-    } else {   
-        $msg = "Erro ao cadastrar cliente! ({$validardados})";
-        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
-    }
+validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade);
+  
 ?>

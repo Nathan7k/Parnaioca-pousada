@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <?php
     include '../config/conexao.php';
-    include '../funcionarios/painel.php';?>
+    include '../funcionarios/navbar.php';?>
 
 
 <head>
@@ -19,13 +19,7 @@
 </head>
 <body>
 
-    <?php
-
-    if (isset($_GET['msg'])) {
-        echo $_GET['msg'];
-    }
-
-    ?>
+   
     <main class="container">
     <section>
         <h1>Cadastrar Cliente</h1>
@@ -79,7 +73,16 @@
 </form>
 
     </section>
+
+    <?php if(isset($_GET['msg'])): ?>
+    <div class="mensagem">
+        <?php echo htmlspecialchars($_GET['msg']); ?>
+    </div>
+<?php endif; ?>
 </main>
+
+
+
 
 </body>
 

@@ -8,14 +8,15 @@
 <body>
     <?php
     include '../config/conexao.php';
+
     $id_cliente = $_GET['id'];
-    $sql = "DELETE FROM clientes WHERE id = $id_cliente";
-    $deletar = mysqli_query($con, $sql);    
-    if($deletar){
-        echo "<script>alert('Deletado com sucesso!'); location.href='listar-c.php';</script>";
+    $sql = "UPDATE clientes set ativo = '0' WHERE id = $id_cliente";
+    $inativar = mysqli_query($con, $sql);    
+    if($inativar){
+        echo "<script>alert('Inativado com sucesso!'); location.href='listar-c.php';</script>";
     } else {
-        echo "<script> alert('Erro ao deletar!'); location.href='listar-c.php'; </script>";
+        echo "<script>alert('Erro ao Inativar!'); location.href='listar-c.php';</script>";
     }
-?>, initial-scale=1.0">
+?>
 </body>
 </html>

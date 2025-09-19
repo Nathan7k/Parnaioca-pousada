@@ -1,5 +1,2 @@
-.env
-/vendor/*
-required.php
-composer.lock
+
 
