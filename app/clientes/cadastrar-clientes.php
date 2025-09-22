@@ -33,7 +33,7 @@
         </div>
         <div class="input-box">
             <label>Data de Nascimento</label>
-            <input type="date" id="data_nascimento" name="data_nascimento" required>
+            <input type="datetime" id="data_nascimento" name="data_nascimento" required>
         </div>
     </div>
 

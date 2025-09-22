@@ -27,7 +27,7 @@ $resvagas = mysqli_query($con, $sqlvagas);
     $vaga_numero = $_POST['vaga_numero'];
     
 
-    $sqlcheck = "SELECT * FROM hospedagens where acomodacao_id = $acomodacao_id AND status IN ('reservado' , 'hospedado') AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
+    $sqlcheck = "SELECT * FROM hospedagens where acomodacao_id = $acomodacao_id AND status IN ('reservado' , 'hospedado' ) AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
 
      $resCheck = mysqli_query($con, $sqlcheck);
 
@@ -41,6 +41,7 @@ $resvagas = mysqli_query($con, $sqlvagas);
                      WHERE acomodacao_id = $acomodacao_id 
                      AND vaga_numero = $vaga_numero 
                      AND ocupada = 1";
+
     $resCheckVaga = mysqli_query($con, $sqlCheckVaga);
 
     if(mysqli_num_rows($resCheckVaga) > 0){
@@ -55,8 +56,12 @@ $resvagas = mysqli_query($con, $sqlvagas);
         $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
                       VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'hospedado')";
 
-
         if (mysqli_query($con, $sqlinsert)) {
+
+           $sqlupdateacomodacao = "UPDATE acomodacoes 
+                                    set ativo = 1
+                                    WHERE id = $acomodacao_id";
+            mysqli_query($con, $sqlupdateacomodacao);
 
             $sqlupdatevaga = "UPDATE estacionamento 
                           SET ocupada = 1 

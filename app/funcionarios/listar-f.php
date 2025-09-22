@@ -37,8 +37,9 @@
     }
     ?>
 
-<h2>lista de funcionários</h2>
+
 <main class="container">
+    <h2>lista de funcionários</h2>
     <table id="minhatabela" class="display">
 
         <thead>

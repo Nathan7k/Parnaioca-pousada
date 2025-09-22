@@ -1,54 +1,84 @@
 <?php
 include_once("../config/conexao.php");
+include '../funcionarios/navbar-listas.php';
 
 
-$sql = "SELECT a.id, a.nome, a.numero, a.valor, a.capacidade_maxima, a.ativo,
-               t.nome AS tipo,
-               (SELECT COUNT(*) FROM hospedagens h 
-                WHERE h.acomodacao_id = a.id 
-                AND NOW() BETWEEN h.data_checkin AND h.data_checkout) AS ocupada
-        FROM acomodacoes a
-        JOIN tipos_acomodacao t ON a.tipo_id = t.id";
+$sql = "SELECT * from acomodacoes";
 $result = mysqli_query($con, $sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Gerenciar Acomodações</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/table.css">
+    <link rel="stylesheet" href="../assets/css/navbar-listas.css">
+    
+
 </head>
+
 <body>
-    <h2>Acomodações</h2>
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>Nome</th>
-            <th>Número</th>
-            <th>Tipo</th>
-            <th>Valor (R$)</th>
-            <th>Capacidade</th>
-            <th>Status</th>
-            <th>Ações</th>
-        </tr>
-        <?php while($row = mysqli_fetch_assoc($result)) { ?>
-            <tr>
-                <td><?php echo $row['nome'] ?></td>
-                <td><?php echo $row['numero'] ?></td>
-                <td><?php echo $row['tipo'] ?></td>
-                <td><?php echo $row['valor'] ?></td>
-                <td><?php echo $row['capacidade_maxima'] ?></td>
-                <td>
-                    <?php echo ($row['ocupada'] > 0) ? "<span style='color:red;'>Ocupada</span>" : "<span style='color:green;'>Disponível</span>"; ?>
-                </td>
-                <td>
-                    <?php if($row['ocupada'] == 0) { ?>
-                        <a href="checkin.php?acomodacao_id=<?php echo $row['id'] ?>">Check-in</a>
-                    <?php } else { ?>
-                        <a href="checkout.php?acomodacao_id=<?php echo $row['id'] ?>">Check-out</a>
-                    <?php } ?>
-                </td>
-            </tr>
-        <?php } ?>
-    </table>
+
+
+    <main class="container">
+
+        <h2>Acomodações</h2>
+        <table id="minhatabela" class="display">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Número</th>
+                    <th>Valor (R$)</th>
+                    <th>Capacidade</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                    <tr>
+                        <td><?php echo $row['nome'] ?></td>
+                        <td><?php echo $row['numero'] ?></td>
+                        <td><?php echo $row['valor'] ?></td>
+                        <td><?php echo $row['capacidade_maxima'] ?></td>
+                        <td>
+                            <?php echo ($row['ativo'] > 0) ? "<span style='color:red;'>ocupada</span>" : "<span style='color:green;'>Disponível</span>"; ?>
+                        </td>
+                        <td>
+                            <?php if ($row['ativo'] == 0) { ?>
+                                <button><a href="checkin.php?acomodacao_id=<?php echo $row['id'] ?>">Check-in</a></button>
+                            <?php } else { ?><button>
+                                <a href="checkout.php?acomodacao_id=<?php echo $row['id'] ?>">Check-out</a></button>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+
+            </tbody>
+        </table>
+
+    </main>
+
+    <script>
+        $('#minhatabela').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
+            }
+        });
+    </script>
+
+
+    
 </body>
+
+
+
+
 </html>
