@@ -6,23 +6,26 @@
     box-sizing: border-box;
      font-family: "Poppins", sans-serif;
 }
+/*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
 
 body{
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #333;
+    background: #EAF4FD;
     background-size: cover;
     background-position: center;
+    
 }
 
 .container {
-    margin: 0 0 0 15%;
+    margin: 0 ;
     width: 700px;
-    border: 2px solid rgba(255,255,255, .2);
+    border: 2px solid #242424;
     border-radius: 10px;
-    color: white;
+    color: #EAF4FD;
     padding: 30px 40px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
                 rgba(0, 0, 0, 0.12) 0px -12px 30px,
@@ -34,6 +37,7 @@ body{
 .container h1 {
     font-size: 36px;
     text-align: center;
+    color: #242424;
 }
 
 .input-box {
@@ -47,11 +51,11 @@ body{
     width: 100%;
     height: 100%;
     background-color: transparent;
-    border: 2px solid rgba(255,255,255, .2);
+    border: 2px solid #242424 ;
     border-radius: 40px;
     outline: none;
     font-size: 16px;
-    color: white;
+    color: #EAF4FD;
     padding: 20px 45px 20px 20px;
 }
 
@@ -71,12 +75,12 @@ body{
 .login {
     width: 100%;
     height: 50px;
-    background-color: #fff;
+    background-color: #EAF4FD;
     border: none;
     border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
-    color: #333;
+    color: #242424 ;
     font-weight: 600;
     box-shadow:rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; 
     margin-top: 20px;
@@ -84,21 +88,34 @@ body{
 
 .login:hover {
     background-color: transparent;
-    border: 2px solid rgba(255,255,255, .2);
-    color: white;
+    border: 2px solid #242424 ;
+    color: #EAF4FD;
     transition: 0.5s;
 }
 
 
 
 .perfil {
-    background-color: #333;
+    background-color: #EAF4FD;
     margin-left: 22%;
     border: none;
     border-radius: 40px;
     cursor: pointer;
     font-size: 16px;
-    color: #ffffff;
+    color: #242424;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+
+.input-box2{
+     background-color: #EAF4FD;
+    margin-left: 22%;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #242424;
     font-weight: 500;
     margin-top: 20px;
 }

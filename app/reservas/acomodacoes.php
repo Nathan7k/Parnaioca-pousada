@@ -49,10 +49,10 @@ $result = mysqli_query($con, $sql);
                         <td><?php echo $row['valor'] ?></td>
                         <td><?php echo $row['capacidade_maxima'] ?></td>
                         <td>
-                            <?php echo ($row['ativo'] > 0) ? "<span style='color:red;'>ocupada</span>" : "<span style='color:green;'>Disponível</span>"; ?>
+                            <?php echo ($row['ocupacao'] > 0) ? "<span style='color:red;'>ocupada</span>" : "<span style='color:green;'>Disponível</span>"; ?>
                         </td>
                         <td>
-                            <?php if ($row['ativo'] == 0) { ?>
+                            <?php if ($row['ocupacao'] == 0) { ?>
                                 <button><a href="checkin.php?acomodacao_id=<?php echo $row['id'] ?>">Check-in</a></button>
                             <?php } else { ?><button>
                                 <a href="checkout.php?acomodacao_id=<?php echo $row['id'] ?>">Check-out</a></button>

@@ -3,7 +3,6 @@
     include '../functions.php';
 
     $id = $_POST['id'];
-    
     $nome = $_POST['nome'];
     $data_nascimento = $_POST['data_nascimento'];
     $email = $_POST['email'];

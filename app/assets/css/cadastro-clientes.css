@@ -6,23 +6,31 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+/*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
 
 body {
+    margin: 3%;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #333;
+    background: #EAF4FD;
     background-size: cover;
     background-position: center;
 }
 
+h1 {
+    color: #242424;
+}
+
+
 .container {
-    margin: 0 0 0 15%;
+
+    margin: 5% 5% 5% 15%;
     width: 700px;
-    border: 2px solid rgba(255,255,255, .2);
+    border: 2px solid #24242493;
     border-radius: 10px;
-    color: white;
+    color: #EAF4FD ;
     padding: 30px 40px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
                 rgba(0, 0, 0, 0.12) 0px -12px 30px,
@@ -54,9 +62,10 @@ body {
 }
 
 .input-box label, .input-box2 label {
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 14px;
-    color: white;
+    color: #242424;
 }
 
 .input-box input,
@@ -66,37 +75,37 @@ body {
     height: 50px;
     padding: 0 15px;
     background-color: transparent;
-    border: 2px solid rgba(255,255,255, .2);
+    border: 2px solid #24242493;
     border-radius: 30px;
     outline: none;
     font-size: 16px;
-    color: white;
+    color: #EAF4FD;
 }
 
 .input-box input::placeholder,
 .input-box2 input::placeholder {
-    color: rgb(165, 165, 165);
+    color: #24242493;
 }
 
 .local {
     cursor: pointer;
     font-size: 16px;
-    color: #8f8f8f;
+    color: #242424 ;
 }
 
 .login {
     width: 100%;
     height: 50px;
-    background-color: #fff;
+    background-color: #EAF4FD;
     border: none;
-    border-radius: 40px;
+    border-radius: 40px ;
     cursor: pointer;
     font-size: 16px;
     color: #333;
     font-weight: 600;
     margin-top: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-                rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                rgba(66, 66, 66, 0.12) 0px -12px 30px,
                 rgba(0, 0, 0, 0.12) 0px 4px 6px,
                 rgba(0, 0, 0, 0.17) 0px 12px 13px,
                 rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -105,7 +114,7 @@ body {
 .login:hover {
     background-color: transparent;
     border: 2px solid rgba(255,255,255, .5);
-    color: white;
+    color: #242424;
     transition: 0.4s;
 }
 
@@ -117,3 +126,8 @@ body {
     
 }
 
+ input[type="date"] {
+      background-color: #EAF4FD;
+      color: #24242493;
+      padding: 5px;
+    }

@@ -12,42 +12,46 @@
 <?php
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';
-
-    if(isset($_GET['msg'])){
-        echo $_GET['msg'];
-    }
+    
+    
 
     ?>
 
 <body>
     <main class = "container">
     <section>
-        <form action = "salvar-f.php" method = "post">
-            <h1>Cadastrar Funcionário</h1>
-            
+        <form action = "salvar-a.php" method = "post">
+            <h1>Cadastrar Acomodação</h1>
+
             <div class="input-box">
                 <input type="text" name="nome" placeholder="Nome">
             </div>
 
             <div class="input-box">
-                <input type="email" name="email" placeholder="Email">
+                <input type="text" name="tipo_id" placeholder="Tipo">
             </div>
 
             <div class="input-box">
-                <input type="password" name="senha" placeholder="Senha">
+                <input type="text" name="numero" placeholder="numero">
             </div>
 
-            <div class="perfil">
-                <select name="perfil" class="perfil">
-                    <option value="user">Funcionário</option>
-                    <option value="admin">Administrador</option>
-                    
-                </select>
+             <div class="input-box">
+                <input type="number" name="valor" placeholder="valor">
+            </div>
+
+             <div class="input-box">
+                <input type="number" name="capacidade_maxima" placeholder="capacidade máxima">
             </div>
             
             <button type="submit" class="login">Enviar</button>
         </form>
+
     </section>
+<?php
+    if(isset($_GET['msg'])){
+        echo $_GET['msg'];
+    }
+    ?>
     </main>
 
     

@@ -1,6 +1,7 @@
 <?php
 
 include '../funcionarios/navbar.php';
+
 ?>
 
 

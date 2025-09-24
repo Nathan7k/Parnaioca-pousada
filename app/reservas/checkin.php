@@ -63,10 +63,7 @@ $resvagas = mysqli_query($con, $sqlvagas);
                                     WHERE id = $acomodacao_id";
             mysqli_query($con, $sqlupdateacomodacao);
 
-            $sqlupdatevaga = "UPDATE estacionamento 
-                          SET ocupada = 1 
-                          WHERE acomodacao_id = $acomodacao_id 
-                          AND vaga_numero = $vaga_numero";
+            $sqlupdatevaga = "UPDATE estacionamento SET ocupada = 1 WHERE acomodacao_id = $acomodacao_id AND vaga_numero = $vaga_numero";
 
             mysqli_query($con, $sqlupdatevaga);
 
@@ -122,6 +119,6 @@ $resvagas = mysqli_query($con, $sqlvagas);
     </form>
 
     <br>
-    <a href="acomodacoes.php">← Voltar</a>
+    <a href="acomodacoes.php">Voltar</a>
 </body>
 </html>

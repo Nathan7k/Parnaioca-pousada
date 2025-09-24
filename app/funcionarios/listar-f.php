@@ -9,26 +9,18 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="../assets/css/table.css">
     <link rel="stylesheet" href="../assets/css/navbar-listas.css">
-    
-    
-
-
     <title>Document</title>
 </head>
 
 <body>
     
-
-
-
-
     <?php
 
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';
 
 
-    $sql = "SELECT * FROM funcionarios";
+    $sql = "SELECT * FROM funcionarios order by Stat desc ";
 
 
     $busca = mysqli_query($con, $sql);
@@ -37,10 +29,16 @@
     }
     ?>
 
+<a href="cadastrar-f.php"><button class="botao-cadastrar">cadastrar</button></a>
 
 <main class="container">
+    
     <h2>lista de funcionários</h2>
+
+    
+
     <table id="minhatabela" class="display">
+        
 
         <thead>
             <tr>
@@ -80,8 +78,8 @@
                 <td><?php echo $up_date ?></td>
 
                 <td>
-                    <a href="editar-f.php?id=<?php echo $id ?>"><button>Editar</button></a>
-                    <a href="excluir-f.php?id=<?php echo $id ?>"><button>Inativar</button></a>
+                    <a href="editar-f.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;">Editar</button></a>
+                    <a  href="excluir-f.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">Inativar</button></a>
                 </td>
             </tr>
         <?php
@@ -91,6 +89,7 @@
 
     </table>
     </main>
+    
 
     <script>
         $('#minhatabela').DataTable({

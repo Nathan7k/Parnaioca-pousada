@@ -6,13 +6,17 @@
 
  }
 
-    /*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
+ /*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
 
  .navbar {
      background-color: #4A90E2;
      padding: 15px 20px;
-     
-
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 8%;
+     width: 100%;
+     z-index: 1000;
 
 
  }
@@ -20,7 +24,11 @@
  .navbar-container {
      display: flex;
      align-items: center;
-     
+     position: fixed;
+     top: 15px;
+     left: 0;
+     width: 100%;
+     z-index: 1000;
 
  }
 

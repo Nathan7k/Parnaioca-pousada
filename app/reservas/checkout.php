@@ -63,6 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <br>
-    <a href="acomodacoes.php">← Voltar</a>
+    <a href="acomodacoes.php">Voltar</a>
 </body>
 </html>

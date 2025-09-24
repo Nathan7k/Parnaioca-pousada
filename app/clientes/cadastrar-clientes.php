@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<?php
-    include '../config/conexao.php';
-    include '../funcionarios/navbar.php';?>
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/cadastro-clientes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <script src="<?PHP echo BASEF; ?>/app/assets/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/navbar-cadastros.css">
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo BASEF; ?>/app/assets/js/cidades-estados-v0.2.js"></script>
-    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/cidades-estados-v0.2.js"></script>
+
+    
 </head>
+
+<?php
+    include '../config/conexao.php';
+    include '../funcionarios/navbar-listas.php';?>
 <body>
 
    
@@ -26,19 +26,17 @@
 
         <form action="salvar-c.php" method="post">
     
-    <div class="input-row">
+    
         <div class="input-box">
             <label>Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
         </div>
-        <div class="input-box">
+        <div class="input-box"  >
             <label>Data de Nascimento</label>
-            <input type="datetime" id="data_nascimento" name="data_nascimento" required>
+            <input class="input-date" type="date" id="data_nascimento" name="data_nascimento" required>
         </div>
-    </div>
-
     
-    <div class="input-row">
+
         <div class="input-box">
             <label>CPF</label>
             <input type="text" id="cpf" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
@@ -46,7 +44,7 @@
         <div class="input-box2">
             <label>Email</label>
             <input type="email" id="email" name="email" placeholder="E-mail" required>
-        </div>
+        
     </div>
 
     

@@ -24,7 +24,7 @@
 
        
        
-         $sql = "SELECT * FROM clientes";
+         $sql = "SELECT * FROM clientes order by ativo desc ";
         $busca = mysqli_query($con, $sql);
         if (!$busca) {
             echo "Erro na consulta: " . mysqli_error($con);
@@ -33,9 +33,10 @@
 
          
 ?>
-
+<a href="cadastrar-clientes.php"><button class="botao-cadastrar">cadastrar</button></a>
 <main class="container">
 <h2>listar Clientes</h2>
+
     <table id="minhatabela" class="display" >
 
     <thead>
@@ -86,9 +87,10 @@
             <td><?php echo $ativo ?></td>
             <td><?php echo $reg_date ?></td>
             <td><?php echo $up_date ?></td>
-            <td><a href="editar-c.php?id=<?php echo $id ?>"><button>Editar</button></a>
+            <td><a href="editar-c.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;">Editar</button></a>
 
-             <a href="excluir-c.php?id=<?php echo $id ?>"><button>inativar</button></a>
+             <a href="excluir-c.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">inativar</button></a>
+             
         </tr>
         <?php
         }
