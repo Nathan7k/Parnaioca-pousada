@@ -19,6 +19,9 @@ $sqlvagas = "SELECT vaga_numero FROM estacionamento
              WHERE acomodacao_id = $acomodacao_id AND ocupada = 0";
 $resvagas = mysqli_query($con, $sqlvagas);
 
+$sqlstatus = "SELECT status from hospedagens";
+$resstatus = mysqli_query($con, $sqlstatus);
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cliente_id = $_POST['cliente_id'];
@@ -54,14 +57,9 @@ $resvagas = mysqli_query($con, $sqlvagas);
 
         
         $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
-                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'hospedado')";
+                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', '')";
 
         if (mysqli_query($con, $sqlinsert)) {
-
-           $sqlupdateacomodacao = "UPDATE acomodacoes 
-                                    set ativo = 1
-                                    WHERE id = $acomodacao_id";
-            mysqli_query($con, $sqlupdateacomodacao);
 
             $sqlupdatevaga = "UPDATE estacionamento SET ocupada = 1 WHERE acomodacao_id = $acomodacao_id AND vaga_numero = $vaga_numero";
 
@@ -84,7 +82,7 @@ $resvagas = mysqli_query($con, $sqlvagas);
     <title>Check-in</title>
 </head>
 <body>
-    <h2>Check-in <?php echo $acomodacao ['nome']?> (<?php echo $acomodacao['numero'];?>)</h2>
+    <h2>Reserva <?php echo $acomodacao ['nome']?> (<?php echo $acomodacao['numero'];?>)</h2>
     <p>Valor da diária: R$ <?php echo $acomodacao ['valor']; ?> </p>
 
     <form method="POST">
@@ -113,10 +111,11 @@ $resvagas = mysqli_query($con, $sqlvagas);
             <?php while ($vaga = mysqli_fetch_assoc($resvagas)) { ?>
                 <option value="<?php echo $vaga['vaga_numero'] ?>">Vaga <?php echo $vaga['vaga_numero'] ?></option>
             <?php } ?>
-        </select>
+        </select> </br></br>
 
-        <button type="submit">Confirmar Check-in</button>
-    </form>
+      
+        <button type="submit">Confirmar Reserva</button>
+    </form> 
 
     <br>
     <a href="acomodacoes.php">Voltar</a>

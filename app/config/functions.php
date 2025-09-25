@@ -90,7 +90,7 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
         return false;
     }
 
-    if (strlen($nome) < 8) {
+    if (strlen($nome) < 3) {
         $msg = "o nome deve ter pelo menos 8 caracteres ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
         return false;

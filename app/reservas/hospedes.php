@@ -3,7 +3,7 @@ include_once("../config/conexao.php");
 include '../funcionarios/navbar-listas.php';
 
 
-$sql = "SELECT * from acomodacoes";
+$sql = "SELECT * from hospedagens";
 $result = mysqli_query($con, $sql);
 ?>
 
@@ -27,14 +27,15 @@ $result = mysqli_query($con, $sql);
 
     <main class="container">
 
-        <h2>Acomodações</h2>
+        <h2>Hospedes</h2>
         <table id="minhatabela" class="display">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Número</th>
-                    <th>Valor (R$)</th>
-                    <th>Capacidade</th>
+                    <th>Cliente id</th>
+                    <th>Acomodacao id</th>
+                    <th>Funcionario id</th>
+                    <th>Data Checkin</th>
+                    <th>Data checkout</th>
                     <th>Status</th>
                     <th>Ações</th>
                 </tr>
@@ -44,18 +45,23 @@ $result = mysqli_query($con, $sql);
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <tr>
-                        <td><?php echo $row['nome'] ?></td>
-                        <td><?php echo $row['numero'] ?></td>
-                        <td><?php echo $row['valor'] ?></td>
-                        <td><?php echo $row['capacidade_maxima'] ?></td>
+                        <td><?php echo $row['cliente_id'] ?></td>
+                        <td><?php echo $row['acomodacao_id'] ?></td>
+                        <td><?php echo $row['funcionario_id'] ?></td>
+                        <td><?php echo $row['data_checkin'] ?></td>
+                        <td><?php echo $row['data_checkout'] ?></td>
+                        
+                          <td><?php echo $row['status'] ?></td>
+                       
                         <td>
-                            <?php echo ($row['ocupacao'] > 0) ? "<span style='color:red;'>ocupada</span>" : "<span style='color:green;'>Disponível</span>"; ?>
-                        </td>
-                        <td> 
-                                <button><a href="reserva.php?acomodacao_id=<?php echo $row['id'] ?>">reservar</a></button>
+                            
+                                <button><a href="checkin.php?acomodacao_id=<?php echo $row['id'] ?>">checkin</a></button>
+                            <button>
+                                <a href="checkout.php?acomodacao_id=<?php echo $row['id'] ?>">Check-out</a></button>
+                            
                         </td>
                     </tr>
-                <?php } ?>
+                 <?php } ?>
 
             </tbody>
         </table>
@@ -73,8 +79,5 @@ $result = mysqli_query($con, $sql);
 
     
 </body>
-
-
-
 
 </html>
