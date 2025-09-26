@@ -56,8 +56,8 @@ $resstatus = mysqli_query($con, $sqlstatus);
         $funcionario_id = $_SESSION['funcionario_id'] ?? 1;
 
         
-        $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
-                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', '')";
+       echo $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
+                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'reservado')";
 
         if (mysqli_query($con, $sqlinsert)) {
 
@@ -70,7 +70,6 @@ $resstatus = mysqli_query($con, $sqlstatus);
             echo "Erro ao realizar check-in: " . mysqli_error($con);
         }
     }
-
 
 
 ?>
@@ -97,11 +96,11 @@ $resstatus = mysqli_query($con, $sqlstatus);
         <br><br>
 
         <label>Data Check-in:</label>
-        <input type="date" name="data_checkin" required>
+        <input type="datetime" name="data_checkin" required>
         <br><br>
 
         <label>Data Check-out:</label>
-        <input type="date" name="data_checkout" required>
+        <input type="datetime" name="data_checkout" required>
         <br><br>
 
 

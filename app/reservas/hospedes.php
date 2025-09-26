@@ -55,9 +55,17 @@ $result = mysqli_query($con, $sql);
                        
                         <td>
                             
-                                <button><a href="checkin.php?acomodacao_id=<?php echo $row['id'] ?>">checkin</a></button>
+                                <button><a href="checkin.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>"style= "text-decoration: none; color:aliceblue;">checkin</a></button>
                             <button>
-                                <a href="checkout.php?acomodacao_id=<?php echo $row['id'] ?>">Check-out</a></button>
+                                <a href="checkout.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>"
+                                style= "text-decoration: none; color:aliceblue;">Check-out</a></button>
+
+                                <button style="background-color: #fa4121ff;">
+                                <a href="cancelar.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>"
+                                style= "text-decoration: none;
+                                color:aliceblue;
+                                
+                                ">Cancelar</a></button>
                             
                         </td>
                     </tr>

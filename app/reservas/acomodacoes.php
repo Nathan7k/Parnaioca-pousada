@@ -52,7 +52,8 @@ $result = mysqli_query($con, $sql);
                             <?php echo ($row['ocupacao'] > 0) ? "<span style='color:red;'>ocupada</span>" : "<span style='color:green;'>Disponível</span>"; ?>
                         </td>
                         <td> 
-                                <button><a href="reserva.php?acomodacao_id=<?php echo $row['id'] ?>">reservar</a></button>
+                                <button style="background-color: #24c052ff;">
+                                    <a href="reserva.php?acomodacao_id=<?php echo $row['id'] ?>"style= "text-decoration: none; color:aliceblue;">reservar</a></button>
                         </td>
                     </tr>
                 <?php } ?>
