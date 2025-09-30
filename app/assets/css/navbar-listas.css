@@ -1,16 +1,16 @@
- * {
-     margin: 0px;
-     padding: 0;
-     box-sizing: border-box;
-     font-family: Arial, sans-serif;
-
- }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     font-family: "Poppins", sans-serif;
+}
 
     /*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
 
  .navbar {
      background-color: #4A90E2;
      padding: 15px 20px;
+     
      
 
 
@@ -46,6 +46,22 @@
      margin-left: 10px;
  }
 
+ .container{
+    margin-left: 10px;
+    margin-top:20px;
+ }
+
+ .txth2 {
+    margin: 0px;
+    margin-left: 10px;
+    margin-top: 10px;
+ }
+
+ .parag{
+    margin-top: 20px;
+    margin-left: 10px;
+ }
+
  @media (max-width: 768px) {
      .navbar-container {
          flex-direction: column;
@@ -62,3 +78,5 @@
          width: 100%;
      }
  }
+
+ 

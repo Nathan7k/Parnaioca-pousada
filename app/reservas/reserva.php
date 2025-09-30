@@ -1,5 +1,6 @@
 <?php
 include_once("../config/conexao.php");
+include "../funcionarios/navbar-listas.php";
 
 $acomodacao_id = $_GET['acomodacao_id'] ?? null;
 
@@ -56,7 +57,7 @@ $resstatus = mysqli_query($con, $sqlstatus);
         $funcionario_id = $_SESSION['funcionario_id'] ?? 1;
 
         
-       echo $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
+        $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
                       VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'reservado')";
 
         if (mysqli_query($con, $sqlinsert)) {
@@ -79,11 +80,15 @@ $resstatus = mysqli_query($con, $sqlstatus);
 <head>
     <meta charset="UTF-8">
     <title>Check-in</title>
+    <link rel="stylesheet" href="../assets/css/navbar-listas.css">
 </head>
-<body>
-    <h2>Reserva <?php echo $acomodacao ['nome']?> (<?php echo $acomodacao['numero'];?>)</h2>
-    <p>Valor da diária: R$ <?php echo $acomodacao ['valor']; ?> </p>
 
+
+<body>
+    <h2 class="txth2">Reserva <?php echo $acomodacao ['nome']?> (<?php echo $acomodacao['numero'];?>)</h2>
+    <p class = "parag">Valor da diária: R$ <?php echo $acomodacao ['valor']; ?> </p>
+
+<main class = "container">
     <form method="POST">
         <label>Cliente:</label>
         <select name="cliente_id" required>
@@ -96,11 +101,11 @@ $resstatus = mysqli_query($con, $sqlstatus);
         <br><br>
 
         <label>Data Check-in:</label>
-        <input type="datetime" name="data_checkin" required>
+        <input type="datetime-local"  name="data_checkin" required>
         <br><br>
 
         <label>Data Check-out:</label>
-        <input type="datetime" name="data_checkout" required>
+        <input type="datetime-local" name="data_checkout" required>
         <br><br>
 
 
@@ -114,9 +119,10 @@ $resstatus = mysqli_query($con, $sqlstatus);
 
       
         <button type="submit">Confirmar Reserva</button>
-    </form> 
 
-    <br>
-    <a href="acomodacoes.php">Voltar</a>
+        <button onclick = "location.href = 'hospedes.php'">Ir para página de hospedes</button>
+    </form> 
+</main>
+    
 </body>
 </html>

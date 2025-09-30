@@ -3,7 +3,7 @@ include_once("../config/conexao.php");
 include '../funcionarios/navbar-listas.php';
 
 
-$sql = "SELECT * from hospedagens";
+$sql = "SELECT * from hospedagens ORDER BY status ASC ";
 $result = mysqli_query($con, $sql);
 ?>
 

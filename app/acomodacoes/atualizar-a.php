@@ -15,7 +15,7 @@
      $sql = "UPDATE acomodacoes SET tipo_id = '$tipo_id', nome = '$nome', numero='$numero', valor ='$valor', capacidade_maxima = '$capacidade_maxima', ativo = '$ativo' WHERE id=$id";
 
     if (mysqli_query($con, $sql)) {
-        echo "Cliente atualizado com sucesso";
+        echo "acomodação atualizada com sucesso";
     } else {
-        echo "Erro ao atualizar Cliente; " . mysqli_error($con);
+        echo "Erro ao atualizar Acomodação; " . mysqli_error($con);
     }

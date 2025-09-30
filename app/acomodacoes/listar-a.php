@@ -27,7 +27,7 @@
     }
     ?>
 
-<a href="cadastrar-clientes.php"><button class="botao-cadastrar">cadastrar</button></a>
+<a href="cadastrar-a.php"><button class="botao-cadastrar">cadastrar</button></a>
 <main class="container">
     <h2>lista de acomodações</h2>
     <table id="minhatabela" class="display">

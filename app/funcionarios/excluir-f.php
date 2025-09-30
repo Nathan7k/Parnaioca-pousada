@@ -10,7 +10,7 @@
     include '../config/conexao.php';
 
     $id_funcionario = $_GET['id'];
-    $sql = "UPDATE funcionarios set Stat = '0' WHERE id = $id_funcionario";
+    $sql = "UPDATE funcionarios set ativo = '0' WHERE id = $id_funcionario";
     $deletar = mysqli_query($con, $sql);    
     if($deletar){
         echo "<script>alert('Inativado com sucesso!'); location.href='listar-f.php';</script>";

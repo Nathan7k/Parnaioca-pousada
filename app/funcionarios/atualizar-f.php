@@ -7,7 +7,7 @@
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
     $perfil = $_POST['perfil'];
-    $ativo = isset($_POST['stat']) ? 1 : 0;
+    $ativo = isset($_POST['ativo']) ? 1 : 0;
 
     updateFuncionario($con, $id, $nome, $email, $senha, $perfil, $ativo);
 

@@ -12,6 +12,10 @@ $sqlupcheckin = "UPDATE hospedagens SET status = 'hospedado' WHERE $acomodacao_i
 
 $resultup = mysqli_query($con, $sqlupcheckin);
 
+  $sqlupacom = "UPDATE acomodacoes SET ocupacao = 1 WHERE id = $acomodacao_id";
+
+$acomres = mysqli_query($con, $sqlupacom);
+
 header("location:hospedes.php");
 
 ?>

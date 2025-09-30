@@ -20,7 +20,7 @@
     include '../funcionarios/navbar-listas.php';
 
 
-    $sql = "SELECT * FROM funcionarios order by Stat desc ";
+    $sql = "SELECT * FROM funcionarios order by ativo desc ";
 
 
     $busca = mysqli_query($con, $sql);
@@ -62,7 +62,7 @@
             $nome = $array['nome'];
             $email = $array['email'];
             $perfil = $array['perfil'];
-            $Stat = $array['Stat'];
+            $ativo = $array['ativo'];
             $reg_date = $array['created_at'];
             $up_date = $array['updated_at'];
         ?>
@@ -73,7 +73,7 @@
                 <td><?php echo $nome ?></td>
                 <td><?php echo $email ?></td>
                 <td><?php echo $perfil ?></td>
-                <td><?php echo $Stat ?></td>
+                <td><?php echo $ativo ?></td>
                 <td><?php echo $reg_date ?></td>
                 <td><?php echo $up_date ?></td>
 

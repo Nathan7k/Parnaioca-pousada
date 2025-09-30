@@ -15,6 +15,9 @@ $sqlupcheckin = "UPDATE hospedagens
 
 $resultup = mysqli_query($con, $sqlupcheckin);
 
+
+
+
 header("location:hospedes.php");
 
 ?>

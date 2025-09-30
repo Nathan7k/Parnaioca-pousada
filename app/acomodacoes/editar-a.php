@@ -20,7 +20,7 @@
     ?>
 
     <section>
-        <h2> Editar funcionário</h2>
+        <h2> Editar acomodação</h2>
         <form action="atualizar-a.php" method="post">
             <input type="hidden" name="id" value="<?php echo $array['id'] ?>">
 

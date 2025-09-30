@@ -1,67 +1,84 @@
-    #minhatabela td,
-    #minhatabela th {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+   * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       font-family: "Poppins", sans-serif;
+   }
+
+
+
+
+   #minhatabela td,
+   #minhatabela th {
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+
+   }
+
+   /*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
+
+   body {
+       background-color: #EAF4FD;
+       color: #242424;
+       font-family: Arial, sans-serif;
+       
+   }
+
+   h2 {
+       color: #242424;
+   }
+
+   table.dataTable {
+       background-color: #EAF4FD;
+       color: #242424;
+       border-collapse: collapse;
+   }
+
+   table.dataTable th {
+       background-color: #EAF4FD;
+       color: #242424;
+   }
+
+   table.dataTable td {
+       background-color: #EAF4FD;
+       color: #242424;
+   }
+
+   table.dataTable tr:hover {
+       background-color: #6BB1F8;
+   }
+
+   button {
+       background-color: #242424;
+       color: #EAF4FD;
+       border: none;
+       padding: 6px 10px;
+       border-radius: 4px;
+       cursor: pointer;
+   }
+
+   button:hover {
+       background-color: #414141;
+   }
+
+   .container {
+       max-width: 97%;
+       margin: 20px auto;
+       overflow-x: auto;
+       border: 1px solid #242424;
+       padding: 10px;
+       border-radius: 6px;
         
-    }
 
-/*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
+   }
 
-    body {
-        background-color: #EAF4FD;
-        color: #242424;
-        font-family: Arial, sans-serif;
-    }
+   .botao-cadastrar {
+      
+       width: 140px;
+       height: 50px;
+       margin: 10px;
+       font-size: 15px;
+       color: #EAF4FD;
 
-    h2 {
-        color: #242424;
-    }
-
-    table.dataTable {
-        background-color: #EAF4FD;
-        color: #242424 ;
-        border-collapse: collapse;
-    }
-
-    table.dataTable th {
-        background-color: #EAF4FD;
-        color: #242424 ;
-    }
-
-    table.dataTable td {
-        background-color: #EAF4FD;
-        color: #242424;
-    }
-
-    table.dataTable tr:hover {
-        background-color: #6BB1F8;
-    }
-
-    button {
-        background-color: #6BB1F8;
-        color: #EAF4FD;
-        border: none;
-        padding: 6px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #6BB1F8;
-    }
-
-    .container {
-    max-width: 97%; 
-    margin: 20px auto; 
-    overflow-x: auto; 
-    border: 1px solid #242424; 
-    padding: 10px; 
-    border-radius: 6px; 
-}
-
-.botao-cadastrar{
-    margin:15px;
-    margin-left: 92%;
-
-}
+   }
