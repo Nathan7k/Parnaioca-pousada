@@ -8,13 +8,9 @@
     /*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
 
  .navbar {
-     background-color: #4A90E2;
+     background-color: #1458a7;
      padding: 15px 20px;
      
-     
-
-
-
  }
 
  .navbar-container {
@@ -48,7 +44,7 @@
 
  .container{
     margin-left: 10px;
-    margin-top:20px;
+    
  }
 
  .txth2 {

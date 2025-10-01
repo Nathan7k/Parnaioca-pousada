@@ -15,9 +15,6 @@
 <body>
     
 
-    
-
-
     <?php
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';

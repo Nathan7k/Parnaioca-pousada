@@ -23,7 +23,7 @@ body {
     width: 220px;
     height: 100vh;
     background-color: #4A90E2;
-    color: #EAF4FD;
+    color: #f3f3f3;
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@ body {
 }
 
 .sidebar .logo h2 {
-    color: #EAF4FD;
+    color: #f3f3f3;
 }
 
 .sidebar .nav-links {
@@ -54,7 +54,7 @@ body {
 }
 
 .sidebar .nav-links li a {
-    color:#EAF4FD;
+    color:#f3f3f3;
     text-decoration: none;
     display: block;
     padding: 10px;

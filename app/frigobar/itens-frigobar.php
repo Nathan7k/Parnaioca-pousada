@@ -7,8 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="../assets/css/table.css">
     <link rel="stylesheet" href="../assets/css/navbar-listas.css">
+    <link rel="stylesheet" href="../assets/css/table.css">
     <title>Document</title>
 </head>
 
@@ -29,7 +29,9 @@
     }
     ?>
 
-<a href="cadastrar-frigobar.php"><button class="botao-cadastrar">cadastrar</button></a>
+<button class="botao-cadastrar" onclick="location.href='cadastrar-frigobar.php'">
+  cadastrar
+</button>
 
 <main class="container">
     

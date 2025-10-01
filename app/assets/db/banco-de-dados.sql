@@ -8,7 +8,7 @@ CREATE TABLE funcionarios (
     email VARCHAR(150) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
     perfil ENUM('admin','user') DEFAULT 'user',
-    stat TINYINT(1) DEFAULT 1,
+    status TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
 );
@@ -44,10 +44,11 @@ CREATE TABLE acomodacoes (
     numero VARCHAR(10) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
     capacidade_maxima INT NOT NULL,
-    ativo TINYINT(1) DEFAULT 1,
+    ocupacao TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (tipo_id) REFERENCES tipos_acomodacao(id)
+    ativo TINYINT(1) DEFAULT 1,
 );
 
 
