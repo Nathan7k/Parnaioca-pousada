@@ -22,12 +22,14 @@
             <h1>Cadastrar Item</h1>
 
             <div class="input-box">
+                <label class="label">Nome do item</label>
                 <input type="text" name="nome" placeholder="Nome">
             </div>
 
              <div class="input-box">
+                <label class="label">valor</label>
                 <input type="number" name="valor" placeholder="valor">
-            </div>
+            </div></br></br>
 
             
             

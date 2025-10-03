@@ -37,7 +37,6 @@
                 <th>ID</th>
                 <th>Tipo</th>
                 <th>Nome</th>
-                <th>numero</th>
                 <th>Valor</th>
                 <th>Capacidade máxima</th>
                 <th>Ocupação</th>
@@ -54,7 +53,6 @@
             $id = $array['id'];
             $tipo_id = $array['tipo_id'];
             $nome  = $array['nome'];
-            $numero = $array['numero'];
             $valor = $array['valor'];
             $capacidade_maxima = $array['capacidade_maxima'];
             $ocupacao = $array['ocupacao'];
@@ -66,7 +64,6 @@
                 <td><?php echo $id ?></td>
                 <td><?php echo $tipo_id ?></td>
                 <td><?php echo $nome ?></td>
-                <td><?php echo $numero ?></td>
                 <td><?php echo $valor ?></td>
                 <td><?php echo $capacidade_maxima?></td>
                 <td><?php echo $ocupacao ?></td>

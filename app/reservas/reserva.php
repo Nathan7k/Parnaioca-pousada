@@ -4,7 +4,7 @@ include "../funcionarios/navbar-listas.php";
 
 $acomodacao_id = $_GET['acomodacao_id'] ?? null;
 
-if(!$acomodacao_id){
+if (!$acomodacao_id) {
     die("Acomodação não informada!");
 }
 
@@ -24,59 +24,83 @@ $sqlstatus = "SELECT status from hospedagens";
 $resstatus = mysqli_query($con, $sqlstatus);
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cliente_id = $_POST['cliente_id'];
     $data_checkin = $_POST['data_checkin'];
     $data_checkout = $_POST['data_checkout'];
     $vaga_numero = $_POST['vaga_numero'];
-    
 
+
+$checkin = new DateTime($data_checkin);
+$checkout = new DateTime($data_checkout);
+$hoje = new DateTime();
+
+if (empty($data_checkin) || empty($data_checkout)) {
+    echo "<script>alert('As datas de check-in e check-out são obrigatórias.'); history.back();</script>";
+    exit;
+}
+
+if ($checkin < $hoje) {
+    echo "<script>alert('A data de checkin não pode ser no passado.'); history.back();</script>";
+    exit;
+}
+
+if ($checkout <= $checkin) {
+    echo "<script>alert('A data de checkout deve ser maior que a data de checkin.'); history.back();</script>";
+    exit;
+}
     $sqlcheck = "SELECT * FROM hospedagens where acomodacao_id = $acomodacao_id AND status IN ('reservado' , 'hospedado' ) AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
 
-     $resCheck = mysqli_query($con, $sqlcheck);
+    $resCheck = mysqli_query($con, $sqlcheck);
 
     if (mysqli_num_rows($resCheck) > 0) {
         echo "Acomodação indisponível";
         exit;
-
     }
 
-     $sqlCheckVaga = "SELECT * FROM estacionamento 
+    foreach ($vaga_numero as $vaga) {
+        $sqlCheckVaga = "SELECT * FROM estacionamento 
                      WHERE acomodacao_id = $acomodacao_id 
-                     AND vaga_numero = $vaga_numero 
+                     AND vaga_numero = $vaga 
                      AND ocupada = 1";
+        $resCheckVaga = mysqli_query($con, $sqlCheckVaga);
 
-    $resCheckVaga = mysqli_query($con, $sqlCheckVaga);
-
-    if(mysqli_num_rows($resCheckVaga) > 0){
-        echo "Essa vaga já está ocupada!";
-        exit;
-    }
-
-        session_start();
-        $funcionario_id = $_SESSION['funcionario_id'] ?? 1;
-
-        
-        $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
-                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'reservado')";
-
-        if (mysqli_query($con, $sqlinsert)) {
-
-            $sqlupdatevaga = "UPDATE estacionamento SET ocupada = 1 WHERE acomodacao_id = $acomodacao_id AND vaga_numero = $vaga_numero";
-
-            mysqli_query($con, $sqlupdatevaga);
-
-            echo "Check-in realizado com sucesso!";
-        } else {
-            echo "Erro ao realizar check-in: " . mysqli_error($con);
+        if (mysqli_num_rows($resCheckVaga) > 0) {
+            echo "A vaga já está ocupada!";
+            exit;
         }
     }
+
+    session_start();
+    $funcionario_id = $_SESSION['funcionario_id'] ?? 1;
+
+
+    $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
+                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'reservado')";
+
+    if (mysqli_query($con, $sqlinsert)) {
+
+
+        foreach ($vaga_numero as $vaga) {
+            $sqlupdatevaga = "UPDATE estacionamento 
+                          SET ocupada = 1 
+                          WHERE acomodacao_id = $acomodacao_id 
+                          AND vaga_numero = $vaga";
+            mysqli_query($con, $sqlupdatevaga);
+        }
+
+        echo "Check-in realizado com sucesso!";
+    } else {
+        echo "Erro ao realizar check-in: " . mysqli_error($con);
+    }
+}
 
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Check-in</title>
@@ -85,44 +109,44 @@ $resstatus = mysqli_query($con, $sqlstatus);
 
 
 <body>
-    <h2 class="txth2">Reserva <?php echo $acomodacao ['nome']?> (<?php echo $acomodacao['numero'];?>)</h2>
-    <p class = "parag">Valor da diária: R$ <?php echo $acomodacao ['valor']; ?> </p>
+    <h2 class="txth2">Reservar <?php echo $acomodacao['nome'] ?> (<?php echo $acomodacao['numero']; ?>)</h2>
+    <p class="parag">Valor da diária: R$ <?php echo $acomodacao['valor']; ?> </p>
 
-<main class = "container">
-    <form method="POST">
-        <label>Cliente:</label>
-        <select name="cliente_id" required>
-            <option value="">Selecione...</option>
-            <?php while($cliente = mysqli_fetch_assoc($resClientes)) { ?>
-                <option value="<?php echo $cliente['id'] ?>"><?php echo $cliente['nome'] ?></option>
-            <?php } ?>
-            
-        </select>
-        <br><br>
+    <main class="container">
+        <form method="POST">
+            <label>Cliente:</label>
+            <select name="cliente_id" required>
+                <option value="">Selecione...</option>
+                <?php while ($cliente = mysqli_fetch_assoc($resClientes)) { ?>
+                    <option value="<?php echo $cliente['id'] ?>"><?php echo $cliente['nome'] ?></option>
+                <?php } ?>
 
-        <label>Data Check-in:</label>
-        <input type="datetime-local"  name="data_checkin" required>
-        <br><br>
+            </select>
+            <br><br>
 
-        <label>Data Check-out:</label>
-        <input type="datetime-local" name="data_checkout" required>
-        <br><br>
+            <label>Data Check-in:</label>
+            <input type="datetime-local" name="data_checkin" required>
+            <br><br>
+
+            <label>Data Check-out:</label>
+            <input type="datetime-local" name="data_checkout" required>
+            <br><br>
 
 
-         <label>Vaga de Estacionamento:</label>
-        <select name="vaga_numero" required>
-            <option value="">Selecione uma vaga</option>
+            <label>Vagas de Estacionamento:</label><br>
             <?php while ($vaga = mysqli_fetch_assoc($resvagas)) { ?>
-                <option value="<?php echo $vaga['vaga_numero'] ?>">Vaga <?php echo $vaga['vaga_numero'] ?></option>
+                <input type="checkbox" name="vaga_numero[]" value="<?php echo $vaga['vaga_numero']; ?>">
+                Vaga <?php echo $vaga['vaga_numero']; ?><br>
             <?php } ?>
-        </select> </br></br>
+            <br>
 
-      
-        <button type="submit">Confirmar Reserva</button>
 
-        <button onclick = "location.href = 'hospedes.php'">Ir para página de hospedes</button>
-    </form> 
-</main>
-    
+            <button type="submit">Confirmar Reserva</button>
+
+            <button onclick="location.href = 'hospedes.php'">Ir para página de hospedes</button>
+        </form>
+    </main>
+
 </body>
+
 </html>

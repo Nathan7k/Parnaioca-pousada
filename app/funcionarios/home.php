@@ -1,10 +1,3 @@
-<?php
-
-include '../funcionarios/navbar.php';
-
-?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,7 +10,11 @@ include '../funcionarios/navbar.php';
     <title>Document</title>
 </head>
 <body>
+<?php
 
+include '../funcionarios/navbar.php';
+
+?>
     
     
 </body>

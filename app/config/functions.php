@@ -85,7 +85,7 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
 {
 
     if (empty($nome) || empty($data_nascimento) || empty($cpf) || empty($email) || empty($telefone) || empty($estado) || empty($cidade)) {
-         $msg = "todos os campos são obrigatórios ";
+        $msg = "todos os campos são obrigatórios ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
         return false;
     }
@@ -96,16 +96,35 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
         return false;
     }
     if (!preg_match("/^[a-zA-ZÀ-ÿ\s]+$/", $nome)) {
-         $msg = "o nome só pode conter letras ";
+        $msg = "o nome só pode conter letras ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
         return false;
     }
 
+    $hoje = Date('y-m-d');
+    $data_atual_DT = new DateTime($hoje, new DateTimeZone('America/Sao_Paulo'));
+    $data_nasc_DT = new DateTime($data_nascimento, new DateTimeZone('America/Sao_Paulo'));
+
+
+    if ($data_nascimento > $hoje) {
+        $msg = "data de nascimento não pode ser cadastrada no futuro";
+        header("location: cadastrar-clientes.php?msg=" . urldecode($msg));
+        return false;
+    }
+
+    $idade = $data_atual_DT->diff($data_nasc_DT);
+    if ($idade->y < 18) {
+        $msg = "Cliente deve ter pelo menos 18 anos";
+        header("location: cadastrar-clientes.php?msg=" . urldecode($msg));
+        return false;
+    }
+
+
     $sql = "SELECT cpf FROM clientes WHERE cpf='$cpf'";
     $res = mysqli_query($con, $sql);
     $numrows = mysqli_num_rows($res);
-    
-    
+
+
     if ($numrows >= 1) {
         $msg = "o CPF informado já está cadastrado ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
@@ -113,14 +132,14 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         $msg = "email inválido";
+        $msg = "email inválido";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
         return false;
     }
 
     insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade);
-     $msg = "Cliente cadastrado com sucesso ";
-        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+    $msg = "Cliente cadastrado com sucesso ";
+    header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
 
     return true;
 }

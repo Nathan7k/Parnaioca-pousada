@@ -3,7 +3,31 @@ include_once("../config/conexao.php");
 include '../funcionarios/navbar-listas.php';
 
 
-$sql = "SELECT * from hospedagens ORDER BY status ASC ";
+//$sql = "SELECT * from hospedagens ORDER BY status ASC ";
+//$result = mysqli_query($con, $sql);
+
+$sql = "SELECT  
+     h.id AS hospedagem_id,
+        c.id AS cliente_id,
+        c.nome AS nome_cliente,
+        a.id AS acomodacao_id,
+        a.nome AS nome_acomodacao,
+        f.id AS funcionario_id,
+        f.nome AS nome_funcionario,
+        h.data_checkin,
+        h.data_checkout,
+        h.status
+      
+    FROM
+        hospedagens AS h
+    JOIN
+        clientes AS c ON h.cliente_id = c.id
+    JOIN
+        acomodacoes AS a ON h.acomodacao_id = a.id
+    JOIN
+        funcionarios AS f ON h.funcionario_id = f.id
+    ORDER BY c.nome";
+
 $result = mysqli_query($con, $sql);
 ?>
 
@@ -18,7 +42,7 @@ $result = mysqli_query($con, $sql);
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="../assets/css/navbar-listas.css">
     <link rel="stylesheet" href="../assets/css/table.css">
-    
+
 
 </head>
 
@@ -45,31 +69,32 @@ $result = mysqli_query($con, $sql);
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <tr>
-                        <td><?php echo $row['cliente_id'] ?></td>
-                        <td><?php echo $row['acomodacao_id'] ?></td>
-                        <td><?php echo $row['funcionario_id'] ?></td>
-                        <td><?php echo $row['data_checkin'] ?></td>
-                        <td><?php echo $row['data_checkout'] ?></td>
-                        
-                          <td><?php echo $row['status'] ?></td>
-                       
+                        <td><?php echo $row['nome_cliente'] ?></td>
+                        <td><?php echo $row['nome_acomodacao'] ?></td>
+                        <td><?php echo $row['nome_funcionario'] ?></td>
+                        <td><?php echo date("d/m/Y H:i", strtotime($row['data_checkin'])) ?></td>
+                        <td><?php echo date("d/m/Y H:i", strtotime($row['data_checkout'])) ?></td>
+
+                        <td><?php echo $row['status'] ?></td>
+
+
                         <td>
-                            
-                                <button><a href="checkin.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>"style= "text-decoration: none; color:aliceblue;">checkin</a></button>
+
+                            <button style="background-color: #4fa3f7ff;"><a href="checkin.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>" style="text-decoration: none; color:aliceblue;">checkin</a></button>
                             <button>
                                 <a href="checkout.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>"
-                                style= "text-decoration: none; color:aliceblue;">Check-out</a></button>
+                                    style="text-decoration: none; color:aliceblue;">Check-out</a></button>
 
-                                <button style="background-color: #fa4121ff;">
+                            <button style="background-color: #fa4121ff;">
                                 <a href="cancelar.php?acomodacao_id=<?php echo $row['acomodacao_id'] ?>"
-                                style= "text-decoration: none;
+                                    style="text-decoration: none;
                                 color:aliceblue;
                                 
                                 ">Cancelar</a></button>
-                            
+
                         </td>
                     </tr>
-                 <?php } ?>
+                <?php } ?>
 
             </tbody>
         </table>
@@ -85,7 +110,7 @@ $result = mysqli_query($con, $sql);
     </script>
 
 
-    
+
 </body>
 
 </html>

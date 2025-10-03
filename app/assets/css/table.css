@@ -2,7 +2,7 @@
        margin: 0;
        padding: 0;
        box-sizing: border-box;
-       font-family: "Poppins", sans-serif;
+       font-family: Arial, sans-serif;
    }
 
 
@@ -21,7 +21,7 @@
    body {
        background-color: #fff;
        color: #242424;
-       font-family: Arial, sans-serif;
+       
 
    }
 

@@ -32,7 +32,6 @@ $result = mysqli_query($con, $sql);
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Número</th>
                     <th>Valor (R$)</th>
                     <th>Capacidade</th>
                     <th>Status</th>
@@ -45,7 +44,6 @@ $result = mysqli_query($con, $sql);
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <tr>
                         <td><?php echo $row['nome'] ?></td>
-                        <td><?php echo $row['numero'] ?></td>
                         <td><?php echo $row['valor'] ?></td>
                         <td><?php echo $row['capacidade_maxima'] ?></td>
                         <td>

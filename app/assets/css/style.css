@@ -1,48 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-
-
+    font-family: Arial, sans-serif;
 }
-/*   #4A90E2   #6BB1F8   #242424  #EAF4FD */
 
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-
-
+    margin: 0;
 }
-
-
 
 .sidebar {
     width: 220px;
     height: 100vh;
-    background-color: #4A90E2;
-    color: #f3f3f3;
+    background-color: #4a90e2;
     position: fixed;
     top: 0;
     left: 0;
     padding: 20px;
-    
-
-    overflow: scroll;
-    scrollbar-color: #4A90E2 #4A90E2;
-    scrollbar-width: thin;
-
-}
-
-.sidebar .logo {
-    text-align: center;
-    margin-bottom: 30px;
 }
 
 .sidebar .logo h2 {
-    color: #f3f3f3;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .sidebar .nav-links {
@@ -50,12 +32,13 @@ body {
 }
 
 .sidebar .nav-links li {
-    margin: 5px 0;
+    margin-bottom: 15px;
 }
 
 .sidebar .nav-links li a {
-    color:#f3f3f3;
     text-decoration: none;
+    color: #fff;
+    font-weight: 500;
     display: block;
     padding: 10px;
     border-radius: 5px;
@@ -63,31 +46,15 @@ body {
 }
 
 .sidebar .nav-links li a:hover {
-    background-color:  #6BB1F8;
+    background-color: #357ABD;
 }
-
 
 .main-content {
     margin-left: 220px;
-    padding: 20px;
-
-}
-
-
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-    .main-content {
-        margin-left: 0;
-    }
+    min-height: 100vh;
+    background-image: url('../../img/sean-oulashin-KMn4VEeEPR8-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 30px;
+    color: #fff;
 }

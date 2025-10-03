@@ -20,7 +20,7 @@ if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
     </head>
 
     <body>
-        <main class="container">
+
         <nav class="sidebar">
             <div class="logo">
                 <h2>Parnaioca</h2>
@@ -29,17 +29,17 @@ if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
                 <li><a href="<?= BASEF ?>/app/funcionarios/home.php">Home</a></li>
                 <li><a href="<?= BASEF ?>/app/funcionarios/listar-f.php">Funcionários</a></li>
                 <li><a href="<?= BASEF ?>/app/clientes/listar-c.php">Clientes</a></li>
-                <li><a href="<?= BASEF ?>/app/reservas/acomodacoes.php">Reserva</a></li>
-                <li><a href="<?= BASEF ?>/app/reservas/estacionamento.php">estacionamento</a></li>
-                <li><a href="<?= BASEF ?>/app/frigobar/itens-frigobar.php">frigobar</a></li>
-                <li><a href="<?= BASEF ?>/app/acomodacoes/listar-a.php">acomodações</a></li>
                 <li><a href="<?= BASEF ?>/app/reservas/hospedes.php">Hospedes</a></li>
-                
-
+                <li><a href="<?= BASEF ?>/app/reservas/acomodacoes.php">Reserva</a></li>
+                <li><a href="<?= BASEF ?>/app/reservas/estacionamento.php">Estacionamento</a></li>
+                <li><a href="<?= BASEF ?>/app/frigobar/itens-frigobar.php">Frigobar</a></li>
+                <li><a href="<?= BASEF ?>/app/acomodacoes/listar-a.php">Acomodações</a></li>
                 <li><a href="../../login/logout.php">Sair</a></li>
             </ul>
         </nav>
-        </main>
+
+        <div class="main-content">
+        </div>
     </body>
 
     </html>
@@ -62,16 +62,19 @@ if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
                 <h2>Painel</h2>
             </div>
             <ul class="nav-links">
-                  <li><a href="<?= BASEF ?>/app/funcionarios/home.php">Home</a></li>
+                <li><a href="<?= BASEF ?>/app/funcionarios/home.php">Home</a></li>
                 <li><a href="<?= BASEF ?>/app/clientes/listar-c.php">Clientes</a></li>
                 <li><a href="<?= BASEF ?>/app/reservas/acomodacoes.php">Reserva</a></li>
-                <li><a href="<?= BASEF ?>/app/reservas/hospedes.php">Hospedes</a></li> 
+                <li><a href="<?= BASEF ?>/app/reservas/hospedes.php">Hospedes</a></li>
                 <li><a href="<?= BASEF ?>/app/frigobar/itens-frigobar.php">frigobar</a></li>
                 <li><a href="<?= BASEF ?>/app/reservas/estacionamento.php">estacionamento</a></li>
 
                 <li><a href="../../login/logout.php">Sair</a></li>
             </ul>
         </nav>
+
+        <div class="main-content">
+        </div>
     </body>
 
     </html>

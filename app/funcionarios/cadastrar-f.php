@@ -24,14 +24,17 @@
             <h1>Cadastrar Funcionário</h1>
             
             <div class="input-box">
+                <label class="label">Nome completo</label>
                 <input type="text" name="nome" placeholder="Nome">
             </div>
 
             <div class="input-box">
+                <label class="label">Email</label>
                 <input type="email" name="email" placeholder="Email">
             </div>
 
             <div class="input-box">
+                <label class="label">Senha</label>
                 <input type="password" name="senha" placeholder="Senha">
             </div>
 

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    
+
     <?php
 
     include '../config/conexao.php';
@@ -29,67 +29,70 @@
     }
     ?>
 
-<a href="cadastrar-f.php"><button class="botao-cadastrar">cadastrar</button></a>
+    <a href="cadastrar-f.php"><button class="botao-cadastrar">cadastrar</button></a>
 
-<main class="container">
-    
-    <h2>lista de funcionários</h2>
+    <main class="container">
 
-    
-
-    <table id="minhatabela" class="display">
-        
-
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Perfil</th>
-                <th>Status</th>
-                <th>reg_date</th>
-                <th>up_date</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-
-    <tbody>
-        <?php
+        <h2>lista de funcionários</h2>
 
 
-        while ($array = mysqli_fetch_array($busca)) {
-            $id = $array['id'];
-            $nome = $array['nome'];
-            $email = $array['email'];
-            $perfil = $array['perfil'];
-            $ativo = $array['ativo'];
-            $reg_date = $array['created_at'];
-            $up_date = $array['updated_at'];
-        ?>
+
+        <table id="minhatabela" class="display">
 
 
-            <tr>
-                <td><?php echo $id ?></td>
-                <td><?php echo $nome ?></td>
-                <td><?php echo $email ?></td>
-                <td><?php echo $perfil ?></td>
-                <td><?php echo $ativo ?></td>
-                <td><?php echo $reg_date ?></td>
-                <td><?php echo $up_date ?></td>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Perfil</th>
+                    <th>Status</th>
+                    <th>reg_date</th>
+                    <th>up_date</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
 
-                <td>
-                    <a href="editar-f.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;">Editar</button></a>
-                    <a  href="excluir-f.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">Inativar</button></a>
-                </td>
-            </tr>
-        <?php
-        }
-        ?>
-        </tbody>
+            <tbody>
+                <?php
 
-    </table>
+
+                while ($array = mysqli_fetch_array($busca)) {
+                    $id = $array['id'];
+                    $nome = $array['nome'];
+                    $email = $array['email'];
+                    $perfil = $array['perfil'];
+                    $ativo = $array['ativo'];
+                    $reg_date = $array['created_at'];
+                    $up_date = $array['updated_at'];
+
+                    $reg_date = date("d/m/Y H:i", strtotime($array['created_at']));
+                    $up_date  = date("d/m/Y H:i", strtotime($array['updated_at']));
+                ?>
+
+
+                    <tr>
+                        <td><?php echo $id ?></td>
+                        <td><?php echo $nome ?></td>
+                        <td><?php echo $email ?></td>
+                        <td><?php echo $perfil ?></td>
+                        <td><?php echo $ativo ?></td>
+                        <td><?php echo $reg_date ?></td>
+                        <td><?php echo $up_date ?></td>
+
+                        <td>
+                            <a href="editar-f.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;">Editar</button></a>
+                            <a href="excluir-f.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">Inativar</button></a>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+
+        </table>
     </main>
-    
+
 
     <script>
         $('#minhatabela').DataTable({
