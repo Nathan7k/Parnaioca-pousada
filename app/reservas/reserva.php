@@ -30,32 +30,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data_checkout = $_POST['data_checkout'];
     $vaga_numero = $_POST['vaga_numero'];
 
+    $timezone = new DateTimeZone('America/Sao_Paulo');
+    $checkin = new DateTime($data_checkin, $timezone);
+    $checkout = new DateTime($data_checkout, $timezone);
+    $hoje = new DateTime();
 
-$checkin = new DateTime($data_checkin);
-$checkout = new DateTime($data_checkout);
-$hoje = new DateTime();
+    if (empty($data_checkin) || empty($data_checkout)) {
+        echo "<script>alert('As datas de check-in e check-out são obrigatórias.'); history.back();</script>";
+        die;
+    }
 
-if (empty($data_checkin) || empty($data_checkout)) {
-    echo "<script>alert('As datas de check-in e check-out são obrigatórias.'); history.back();</script>";
-    exit;
-}
+    if ($checkin < $hoje) {
+        echo "<script>alert('A data de checkin não pode ser no passado.'); history.back();</script>";
+        die;
+    }
 
-if ($checkin < $hoje) {
-    echo "<script>alert('A data de checkin não pode ser no passado.'); history.back();</script>";
-    exit;
-}
-
-if ($checkout <= $checkin) {
-    echo "<script>alert('A data de checkout deve ser maior que a data de checkin.'); history.back();</script>";
-    exit;
-}
+    if ($checkout <= $checkin) {
+        echo "<script>alert('A data de checkout deve ser maior que a data de checkin.'); history.back();</script>";
+        die;
+    }
     $sqlcheck = "SELECT * FROM hospedagens where acomodacao_id = $acomodacao_id AND status IN ('reservado' , 'hospedado' ) AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
 
     $resCheck = mysqli_query($con, $sqlcheck);
 
     if (mysqli_num_rows($resCheck) > 0) {
         echo "Acomodação indisponível";
-        exit;
+        die;
     }
 
     foreach ($vaga_numero as $vaga) {
@@ -67,7 +67,7 @@ if ($checkout <= $checkin) {
 
         if (mysqli_num_rows($resCheckVaga) > 0) {
             echo "A vaga já está ocupada!";
-            exit;
+            die;
         }
     }
 
@@ -105,45 +105,55 @@ if ($checkout <= $checkin) {
     <meta charset="UTF-8">
     <title>Check-in</title>
     <link rel="stylesheet" href="../assets/css/navbar-listas.css">
+    <link rel="stylesheet" href="../assets/css/form.css">
 </head>
 
 
 <body>
-    <h2 class="txth2">Reservar <?php echo $acomodacao['nome'] ?> (<?php echo $acomodacao['numero']; ?>)</h2>
-    <p class="parag">Valor da diária: R$ <?php echo $acomodacao['valor']; ?> </p>
-
     <main class="container">
+        <h2 class="txth2">Reservar <?php echo $acomodacao['nome'] ?> (<?php echo $acomodacao['numero']; ?>)</h2>
+        <p class="parag">Valor da diária: R$ <?php echo $acomodacao['valor']; ?> </p></br></br>
+
+
         <form method="POST">
-            <label>Cliente:</label>
-            <select name="cliente_id" required>
-                <option value="">Selecione...</option>
-                <?php while ($cliente = mysqli_fetch_assoc($resClientes)) { ?>
-                    <option value="<?php echo $cliente['id'] ?>"><?php echo $cliente['nome'] ?></option>
-                <?php } ?>
+            <div class="select">
+                <label>Cliente:</label>
+                <select name="cliente_id" required>
+                    <option value="">Selecione...</option>
+                    <?php while ($cliente = mysqli_fetch_assoc($resClientes)) { ?>
+                        <option value="<?php echo $cliente['id'] ?>"><?php echo $cliente['nome'] ?></option>
+                    <?php } ?>
 
-            </select>
-            <br><br>
+                </select>
+                <br><br>
+            </div>
 
-            <label>Data Check-in:</label>
-            <input type="datetime-local" name="data_checkin" required>
-            <br><br>
+            <div class="select">
+                <label>Data Check-in:</label>
+                <input type="datetime-local" name="data_checkin" required>
+                <br><br>
 
-            <label>Data Check-out:</label>
-            <input type="datetime-local" name="data_checkout" required>
-            <br><br>
-
-
-            <label>Vagas de Estacionamento:</label><br>
-            <?php while ($vaga = mysqli_fetch_assoc($resvagas)) { ?>
-                <input type="checkbox" name="vaga_numero[]" value="<?php echo $vaga['vaga_numero']; ?>">
-                Vaga <?php echo $vaga['vaga_numero']; ?><br>
-            <?php } ?>
-            <br>
+                <label>Data Check-out:</label>
+                <input type="datetime-local" name="data_checkout" required>
+                <br><br>
+            </div>
 
 
-            <button type="submit">Confirmar Reserva</button>
+            <div class="vagas">
+                <label>Vagas de Estacionamento:</label>
+                <div class="vagas-lista">
+                    <?php while ($vaga = mysqli_fetch_assoc($resvagas)) { ?>
+                        <label class="vaga">
+                            <input type="checkbox" name="vaga_numero[]" value="<?php echo $vaga['vaga_numero']; ?>">
+                            Vaga <?php echo $vaga['vaga_numero']; ?>
+                        </label>
+                    <?php } ?>
+                </div>
+            </div>
 
-            <button onclick="location.href = 'hospedes.php'">Ir para página de hospedes</button>
+            <button class="bt_confirm" type="submit">Confirmar Reserva</button>
+
+            <button type="button" class="btn_return" onclick="location.href = 'hospedes.php'">Ir para página de hospedes</button>
         </form>
     </main>
 

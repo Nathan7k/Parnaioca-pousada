@@ -4,27 +4,30 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
 }
 
 body {
     margin: 0;
+    background-color: #F4F4F4;
 }
+
 
 .sidebar {
     width: 220px;
     height: 100vh;
-    background-color: #4a90e2;
+    background-color: #003366; 
     position: fixed;
     top: 0;
     left: 0;
     padding: 20px;
+    overflow-y: auto;
 }
 
 .sidebar .logo h2 {
     color: #fff;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .sidebar .nav-links {
@@ -38,23 +41,66 @@ body {
 .sidebar .nav-links li a {
     text-decoration: none;
     color: #fff;
-    font-weight: 500;
+    font-weight: 400;
     display: block;
-    padding: 10px;
+    padding: 8px;
     border-radius: 5px;
     transition: 0.3s;
 }
 
 .sidebar .nav-links li a:hover {
-    background-color: #357ABD;
+    background-color: #002244; 
 }
 
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+
 .main-content {
-    margin-left: 220px;
-    min-height: 100vh;
-    background-image: url('../../img/sean-oulashin-KMn4VEeEPR8-unsplash.jpg');
-    background-size: cover;
-    background-position: center;
+    margin-left: 230px;
+    padding: 30px;           
+    color: #2c3e50; 
+    min-height: 100vh;  
+}
+
+
+.dashboard-container {
+    background-color: #ffffff;
+    border-radius: 20px;
     padding: 30px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+}
+
+
+.card h5 {
+    font-size: 1rem;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+}
+
+
+.card-success h3 { color: #A8E6CF; } 
+.card-danger h3 { color: #F44336; } 
+.card-warning h3 { color: #FF9800; } 
+.card-primary h3 { color: #003366; } 
+.card-info h3 { color: #3498db; }    
+.card-secondary h3 { color: #95a5a6; } 
+.card-dark h3 { color: #2c3e50; }    
+
+
+.table th, .table td {
+    vertical-align: middle;
+}
+.table thead {
+    background-color: #003366;
     color: #fff;
 }

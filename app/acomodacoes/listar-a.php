@@ -69,18 +69,22 @@
                 <td><?php echo $ocupacao ?></td>
                 <td><?php echo $ativo ?></td>
 
-                <td>
-                    <a href="editar-a.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;" >Editar</button></a>
-                    <a href="excluir-a.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">Inativar</button></a>
-                    
-                </td>
+               <td>
+                            <a href="editar-a.php?id=<?php echo $id ?>">
+                                <button class="btn-editar">Editar</button>
+                            </a>
+                            
+                            <a href="excluir-a.php?id=<?php echo $id ?>">
+                                <button class="btn-inativar">Inativar</button>
+                            </a>
+                        </td>
             </tr>
         <?php
         }
         ?>
         </tbody>
-
-    </table>
+	
+    </table> 
     </main>
 
     <script>

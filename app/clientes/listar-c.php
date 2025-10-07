@@ -13,91 +13,97 @@
 </head>
 
 <body>
-    
+
 
     <?php
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';
 
-       
-       
-         $sql = "SELECT * FROM clientes order by ativo desc ";
-        $busca = mysqli_query($con, $sql);
-        if (!$busca) {
-            echo "Erro na consulta: " . mysqli_error($con);
-            exit;
-        }
 
-         
-?>
-<a href="cadastrar-clientes.php"><button class="botao-cadastrar">cadastrar</button></a>
-<main class="container">
-<h2>listar Clientes</h2>
 
-    <table id="minhatabela" class="display" >
+    $sql = "SELECT * FROM clientes order by ativo desc ";
+    $busca = mysqli_query($con, $sql);
+    if (!$busca) {
+        echo "Erro na consulta: " . mysqli_error($con);
+        exit;
+    }
 
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>data_nascimento</th>
-            <th>cpf</th>
-            <th>Email</th>
-            <th>telefone</th>
-            <th>estado</th>
-            <th>cidade</th>
-            <th>Status</th>
-            <th>reg_date</th>
-            <th>up_date</th>
-            <th>Ações</th>
-        </tr>
 
-    </thead>
-       
-    <tbody>
-        <?php
-        
+    ?>
+    <a href="cadastrar-clientes.php"><button class="botao-cadastrar">cadastrar</button></a>
+    <main class="container">
+        <h2>listar Clientes</h2>
 
-        while ($array = mysqli_fetch_array($busca)) {
-            $id = $array['id'];
-            $nome = $array['nome'];
-            $data_nascimento = $array['data_nascimento'];
-            $cpf = $array['cpf'];
-            $email = $array['email'];
-            $telefone = $array['telefone'];
-            $estado = $array['estado'];
-            $cidade = $array['cidade'];
-            $ativo = $array['ativo'];
-            $reg_date = $array['created_at'];
-            $up_date = $array['updated_at'];
-        ?>
-        
-        <tr>
-            <td><?php echo $id ?></td>
-            <td><?php echo $nome ?></td>
-            <td><?php echo $data_nascimento ?></td>
-            <td><?php echo $cpf ?></td>
-            <td><?php echo $email ?></td>
-            <td><?php echo $telefone ?></td>
-            <td><?php echo $estado ?></td>
-            <td><?php echo $cidade ?></td>
-            <td><?php echo $ativo ?></td>
-            <td><?php echo $reg_date ?></td>
-            <td><?php echo $up_date ?></td>
-            <td><a href="editar-c.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;">Editar</button></a>
+        <table id="minhatabela" class="display">
 
-             <a href="excluir-c.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">inativar</button></a>
-             
-        </tr>
-        <?php
-        }
-        ?>
-        </tbody>
-    </table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>data_nascimento</th>
+                    <th>cpf</th>
+                    <th>Email</th>
+                    <th>telefone</th>
+                    <th>estado</th>
+                    <th>cidade</th>
+                    <th>Status</th>
+                    <th>reg_date</th>
+                    <th>up_date</th>
+                    <th>Ações</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <?php
+
+
+                while ($array = mysqli_fetch_array($busca)) {
+                    $id = $array['id'];
+                    $nome = $array['nome'];
+                    $data_nascimento = $array['data_nascimento'];
+                    $cpf = $array['cpf'];
+                    $email = $array['email'];
+                    $telefone = $array['telefone'];
+                    $estado = $array['estado'];
+                    $cidade = $array['cidade'];
+                    $ativo = $array['ativo'];
+                    $reg_date = $array['created_at'];
+                    $up_date = $array['updated_at'];
+                ?>
+
+                    <tr>
+                        <td><?php echo $id ?></td>
+                        <td><?php echo $nome ?></td>
+                        <td><?php echo $data_nascimento ?></td>
+                        <td><?php echo $cpf ?></td>
+                        <td><?php echo $email ?></td>
+                        <td><?php echo $telefone ?></td>
+                        <td><?php echo $estado ?></td>
+                        <td><?php echo $cidade ?></td>
+                        <td><?php echo $ativo ?></td>
+                        <td><?php echo $reg_date ?></td>
+                        <td><?php echo $up_date ?></td>
+                        <td>
+                            <a href="editar-c.php?id=<?php echo $id ?>">
+                                <button class="btn-editar">Editar</button>
+                            </a>
+                            
+                            <a href="excluir-c.php?id=<?php echo $id ?>">
+                                <button class="btn-inativar">Inativar</button>
+                            </a>
+                        </td>
+
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
 
     </main>
 
-     <script>
+    <script>
         $('#minhatabela').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"

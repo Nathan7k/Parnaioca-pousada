@@ -34,11 +34,13 @@ if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
                 <li><a href="<?= BASEF ?>/app/reservas/estacionamento.php">Estacionamento</a></li>
                 <li><a href="<?= BASEF ?>/app/frigobar/itens-frigobar.php">Frigobar</a></li>
                 <li><a href="<?= BASEF ?>/app/acomodacoes/listar-a.php">Acomodações</a></li>
+                <li><a href="<?= BASEF ?>/app/relatorios/relatorios.php">Relatórios</a></li>
+
                 <li><a href="../../login/logout.php">Sair</a></li>
             </ul>
         </nav>
 
-        <div class="main-content">
+        <div>
         </div>
     </body>
 
@@ -68,6 +70,7 @@ if (isset($_SESSION['perfil']) && $_SESSION['perfil'] === 'admin') {
                 <li><a href="<?= BASEF ?>/app/reservas/hospedes.php">Hospedes</a></li>
                 <li><a href="<?= BASEF ?>/app/frigobar/itens-frigobar.php">frigobar</a></li>
                 <li><a href="<?= BASEF ?>/app/reservas/estacionamento.php">estacionamento</a></li>
+                <li><a href="<?= BASEF ?>/app/relatorios/financeiro.php">estacionamento</a></li>
 
                 <li><a href="../../login/logout.php">Sair</a></li>
             </ul>

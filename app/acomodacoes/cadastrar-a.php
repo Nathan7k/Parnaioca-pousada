@@ -25,28 +25,29 @@ include '../funcionarios/navbar-listas.php';
                 <h1>Cadastrar Acomodação</h1>
 
                 <div class="input-box">
+                    <label class="label">Nome</label>
                     <input type="text" name="nome" placeholder="Nome">
                 </div>
 
                 <div class="input-box">
+                    <label class="label">tipo</label>
                     <input type="text" name="tipo_id" placeholder="Tipo">
                 </div>
 
                 <div class="input-box">
-                    <input type="text" name="numero" placeholder="numero">
-                </div>
-
-                <div class="input-box">
+                    <label class="label">Valor</label>
                     <input type="number" name="valor" placeholder="valor">
                 </div>
 
                 <div class="input-box">
+                    <label class="label">Capacidade máxima</label>
                     <input type="number" name="capacidade_maxima" placeholder="capacidade máxima">
                 </div>
 
                  <div class="input-box">
+                    <label class="label">Quantidade de vagas</label>
                 <input type="number" name="quantidade_vagas" id="quantidade_vagas" min="0" required placeholder="quantidade de vagas">
-                </div>
+                </div></br></br>
 
                 <button type="submit" class="login">Enviar</button>
             </form>

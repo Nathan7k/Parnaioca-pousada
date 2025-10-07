@@ -5,14 +5,14 @@ include '../config/conexao.php';
 $acomodacao_id = $_GET['acomodacao_id'] ?? null;
 
 if (!$acomodacao_id) {
-    die("Acomodação não informada!");
+  die("Acomodação não informada!");
 }
 
 $sqlupcheckin = "UPDATE hospedagens SET status = 'hospedado' WHERE $acomodacao_id = acomodacao_id AND status = 'reservado' ";
 
 $resultup = mysqli_query($con, $sqlupcheckin);
 
-  $sqlupacom = "UPDATE acomodacoes SET ocupacao = 1 WHERE id = $acomodacao_id";
+$sqlupacom = "UPDATE acomodacoes SET ocupacao = 1 WHERE id = $acomodacao_id";
 
 $acomres = mysqli_query($con, $sqlupacom);
 
@@ -25,9 +25,9 @@ header("location:hospedes.php");
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>

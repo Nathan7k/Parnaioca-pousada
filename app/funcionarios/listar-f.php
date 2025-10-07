@@ -80,9 +80,14 @@
                         <td><?php echo $reg_date ?></td>
                         <td><?php echo $up_date ?></td>
 
-                        <td>
-                            <a href="editar-f.php?id=<?php echo $id ?>"><button style="background-color: #24c052ff;">Editar</button></a>
-                            <a href="excluir-f.php?id=<?php echo $id ?>"><button style="background-color: #fa4121ff;">Inativar</button></a>
+                         <td>
+                            <a href="editar-c.php?id=<?php echo $id ?>">
+                                <button class="btn-editar">Editar</button>
+                            </a>
+                            
+                            <a href="excluir-c.php?id=<?php echo $id ?>">
+                                <button class="btn-inativar">Inativar</button>
+                            </a>
                         </td>
                     </tr>
                 <?php

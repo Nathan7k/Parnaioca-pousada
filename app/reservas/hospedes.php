@@ -3,9 +3,6 @@ include_once("../config/conexao.php");
 include '../funcionarios/navbar-listas.php';
 
 
-//$sql = "SELECT * from hospedagens ORDER BY status ASC ";
-//$result = mysqli_query($con, $sql);
-
 $sql = "SELECT  
      h.id AS hospedagem_id,
         c.id AS cliente_id,
@@ -26,7 +23,7 @@ $sql = "SELECT
         acomodacoes AS a ON h.acomodacao_id = a.id
     JOIN
         funcionarios AS f ON h.funcionario_id = f.id
-    ORDER BY c.nome";
+    ORDER BY h.data_checkin DESC";
 
 $result = mysqli_query($con, $sql);
 ?>
