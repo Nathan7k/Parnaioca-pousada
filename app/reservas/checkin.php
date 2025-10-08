@@ -8,15 +8,21 @@ if (!$acomodacao_id) {
   die("Acomodação não informada!");
 }
 
-$sqlupcheckin = "UPDATE hospedagens SET status = 'hospedado' WHERE $acomodacao_id = acomodacao_id AND status = 'reservado' ";
-
+$sqlupcheckin = "UPDATE hospedagens SET status = 'hospedado' WHERE acomodacao_id = $acomodacao_id AND status = 'reservado' ";
 $resultup = mysqli_query($con, $sqlupcheckin);
 
-$sqlupacom = "UPDATE acomodacoes SET ocupacao = 1 WHERE id = $acomodacao_id";
-
-$acomres = mysqli_query($con, $sqlupacom);
-
-header("location:hospedes.php");
+if ($resultup) {
+  if (mysqli_affected_rows($con) > 0) {
+    $sqlupacom = "UPDATE acomodacoes SET ocupacao = 1 WHERE id = $acomodacao_id";
+    $acomres = mysqli_query($con, $sqlupacom);
+    header("location:hospedes.php");
+    exit;
+  } else {
+    echo "<script>alert('Nenhuma hospedagem com status reservado.'); history.back();</script>";
+  }
+} else {
+  echo "<script>alert('Erro ao atualizar status de checkin.'); history.back();</script>";
+}
 
 ?>
 

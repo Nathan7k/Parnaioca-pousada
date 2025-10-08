@@ -14,11 +14,13 @@ body {
 
 h2 {
     color: #2c3e50;
+    margin: 5px;
 }
 
 
 #minhatabela td,
 #minhatabela th {
+    
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -110,4 +112,9 @@ button:hover {
     border-radius: 4px;
     cursor: pointer;
     transition: 0.3s;
+}
+
+ .dataTables_filter  {
+    margin: 6px;
+
 }

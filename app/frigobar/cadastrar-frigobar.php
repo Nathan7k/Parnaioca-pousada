@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/navbar-cadastros.css">
-    <link rel="stylesheet" href="../assets/css/cadastros.css">
+    <link rel="stylesheet" href="../assets/css/form.css">
     <title>Document</title>
 </head>
 <?php
     include '../config/conexao.php';
-    include '../funcionarios/navbar-listas.php';
+   
     
     
 
@@ -19,7 +18,7 @@
     <main class = "container">
     <section>
         <form action = "salvar-frigobar.php" method = "post">
-            <h1>Cadastrar Item</h1>
+            <h1 class="txth2">Cadastrar Item</h1>
 
             <div class="input-box">
                 <label class="label">Nome do item</label>
@@ -33,7 +32,8 @@
 
             
             
-            <button type="submit" class="login">Enviar</button>
+            <button class="bt_confirm" type="submit" class="login">Enviar</button>
+            <button class="btn_return" type="button" class="login" onclick="location.href='itens-frigobar.php'">Voltar</button>
         </form>
 
     </section>

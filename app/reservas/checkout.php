@@ -57,33 +57,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $checkin = new DateTime($hospedagem['data_checkin']);
     $checkout = new DateTime($hospedagem['data_checkout']);
     $dias = $checkin->diff($checkout)->days;
-    if ($dias == 0) $dias = 1; 
+    if ($dias == 0) $dias = 1;
 
     $valor_diaria = $acomodacao['valor'];
     $total_hospedagem = $valor_diaria * $dias;
 
-   
+
     $total_final = $total_hospedagem + $total_frigobar;
 
-   
+
     $sqlAtualizaTotal = "UPDATE hospedagens 
-                         SET total = '$total_final' 
+                         SET total = '$total_hospedagem' 
                          WHERE id = {$hospedagem['id']}";
     mysqli_query($con, $sqlAtualizaTotal);
 
     $sqlupdatehosp = "UPDATE hospedagens SET status = 'finalizado' WHERE id = {$hospedagem['id']}";
     if (mysqli_query($con, $sqlupdatehosp)) {
 
-        
+
         $sqlLiberaVaga = "UPDATE estacionamento SET ocupada = 0 
                           WHERE acomodacao_id = $acomodacao_id AND ocupada = 1";
         mysqli_query($con, $sqlLiberaVaga);
 
-        
+
         $sqlupacom = "UPDATE acomodacoes SET ocupacao = 0 WHERE id = $acomodacao_id";
         mysqli_query($con, $sqlupacom);
 
-    
+
         echo "<script>location.href='emitir_nota.php?hospedagem_id={$hospedagem['id']}';</script>";
         exit;
     } else {
@@ -102,36 +102,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body class="bg-light">
-<div class="container mt-5 p-4 bg-white shadow rounded">
-    <h2 class="mb-3 text-center"> Check-out - <?php echo $acomodacao['nome']; ?> (<?php echo $acomodacao['numero']; ?>)</h2>
-    
-    <p><strong>Cliente:</strong> <?php echo $hospedagem['nome']; ?></p>
-    <p><strong>Data Check-in:</strong> <?php echo date('d/m/Y H:i', strtotime($hospedagem['data_checkin'])); ?></p>
-    <p><strong>Data Prevista Check-out:</strong> <?php echo date('d/m/Y H:i', strtotime($hospedagem['data_checkout'])); ?></p>
-    <p><strong>Vaga utilizada:</strong> <?php echo $hospedagem['vaga_numero'] ?: "Nenhuma"; ?></p>
-    <p><strong>Valor diária:</strong> R$ <?php echo number_format($acomodacao['valor'], 2, ',', '.'); ?></p>
+    <div class="container mt-5 p-4 bg-white shadow rounded">
+        <h2 class="mb-3 text-center"> Check-out - <?php echo $acomodacao['nome']; ?> (<?php echo $acomodacao['numero']; ?>)</h2>
 
-    <hr>
+        <p><strong>Cliente:</strong> <?php echo $hospedagem['nome']; ?></p>
+        <p><strong>Data Check-in:</strong> <?php echo date('d/m/Y H:i', strtotime($hospedagem['data_checkin'])); ?></p>
+        <p><strong>Data Prevista Check-out:</strong> <?php echo date('d/m/Y H:i', strtotime($hospedagem['data_checkout'])); ?></p>
+        <p><strong>Vaga utilizada:</strong> <?php echo $hospedagem['vaga_numero'] ?: "Nenhuma"; ?></p>
+        <p><strong>Valor diária:</strong> R$ <?php echo number_format($acomodacao['valor'], 2, ',', '.'); ?></p>
 
-    <form method="POST">
-        <input type="hidden" name="hospedagem_id" value="<?php echo $hospedagem['id']; ?>">
+        <hr>
 
-        <h4>Consumo do Frigobar</h4>
-        <div class="row">
-            <?php while ($item = mysqli_fetch_assoc($resultfrigobar)) { ?>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label"><?php echo $item['nome']; ?> (R$ <?php echo number_format($item['valor'], 2, ',', '.'); ?>)</label>
-                    <input type="number" name="itens[<?php echo $item['id']; ?>]" class="form-control" min="0" value="0">
-                </div>
-            <?php } ?>
+        <form method="POST">
+            <input type="hidden" name="hospedagem_id" value="<?php echo $hospedagem['id']; ?>">
+
+            <h4>Consumo do Frigobar</h4>
+            <div class="row">
+                <?php while ($item = mysqli_fetch_assoc($resultfrigobar)) { ?>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label"><?php echo $item['nome']; ?> (R$ <?php echo number_format($item['valor'], 2, ',', '.'); ?>)</label>
+                        <input type="number" name="itens[<?php echo $item['id']; ?>]" class="form-control" min="0" value="0">
+                    </div>
+                <?php } ?>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Emitir Nota e Finalizar</button>
+        </form>
+
+        <div class="mt-3 text-center">
+            <a href="acomodacoes.php" class="btn btn-secondary"> Voltar</a>
         </div>
-
-        <button type="submit" class="btn btn-primary w-100">Emitir Nota e Finalizar</button>
-    </form>
-
-    <div class="mt-3 text-center">
-        <a href="acomodacoes.php" class="btn btn-secondary"> Voltar</a>
     </div>
-</div>
 </body>
+
 </html>

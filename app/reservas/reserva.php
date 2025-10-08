@@ -33,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $timezone = new DateTimeZone('America/Sao_Paulo');
     $checkin = new DateTime($data_checkin, $timezone);
     $checkout = new DateTime($data_checkout, $timezone);
-    $hoje = new DateTime();
+    $hoje = new DateTime( "now", $timezone);
 
     if (empty($data_checkin) || empty($data_checkout)) {
         echo "<script>alert('As datas de check-in e check-out são obrigatórias.'); history.back();</script>";
         die;
     }
 
-    if ($checkin < $hoje) {
+    if ($checkin->format('Y-m-d') < $hoje->format('Y-m-d')) {
         echo "<script>alert('A data de checkin não pode ser no passado.'); history.back();</script>";
         die;
     }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resCheck = mysqli_query($con, $sqlcheck);
 
     if (mysqli_num_rows($resCheck) > 0) {
-        echo "Acomodação indisponível";
+        echo "<script>alert('Acomodação indisponível.'); history.back();</script>";
         die;
     }
 
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resCheckVaga = mysqli_query($con, $sqlCheckVaga);
 
         if (mysqli_num_rows($resCheckVaga) > 0) {
-            echo "A vaga já está ocupada!";
+            echo "<script>alert('A vaga já está ocupada.'); history.back();</script>";
             die;
         }
     }
@@ -89,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_query($con, $sqlupdatevaga);
         }
 
-        echo "Check-in realizado com sucesso!";
+        echo "<script>alert('Checkin realizado com sucesso !!.'); history.back();</script>";
     } else {
-        echo "Erro ao realizar check-in: " . mysqli_error($con);
+        echo "<script>alert('Erro ao realizar checkin.'); history.back();</script>";
     }
 }
 

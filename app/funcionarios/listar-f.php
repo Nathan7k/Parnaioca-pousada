@@ -81,11 +81,11 @@
                         <td><?php echo $up_date ?></td>
 
                          <td>
-                            <a href="editar-c.php?id=<?php echo $id ?>">
+                            <a href="editar-f.php?id=<?php echo $id ?>">
                                 <button class="btn-editar">Editar</button>
                             </a>
                             
-                            <a href="excluir-c.php?id=<?php echo $id ?>">
+                            <a href="excluir-f.php?id=<?php echo $id ?>">
                                 <button class="btn-inativar">Inativar</button>
                             </a>
                         </td>

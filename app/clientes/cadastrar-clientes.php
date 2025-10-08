@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/navbar-cadastros.css">
-    <link rel="stylesheet" href="../assets/css/cadastros.css">
+    <link rel="stylesheet" href="../assets/css/form.css">
     <script src="../assets/js/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script type="text/javascript" src="../assets/js/cidades-estados-v0.2.js"></script>
@@ -14,8 +13,7 @@
 </head>
 
 <?php
-include '../config/conexao.php';
-include '../funcionarios/navbar-listas.php'; ?>
+include '../config/conexao.php'; ?>
 
 <body>
 
@@ -24,7 +22,7 @@ include '../funcionarios/navbar-listas.php'; ?>
         <section>
 
             <form action="salvar-c.php" method="post">
-                <h1>Cadastrar Cliente</h1>
+                <h1 class="txth2">Cadastrar Cliente</h1>
 
                 <div class="input-box">
                     <label class="label">Nome completo</label>
@@ -52,18 +50,19 @@ include '../funcionarios/navbar-listas.php'; ?>
                     <input type="text" id="telefone" name="telefone" placeholder="(xx)xxxxx-xxxx" required>
                 </div>
 
-                <div class="local">
+                <div class="select-c">
                     <label>Estado:</label>
                     <select id="estado" name="estado" required class="local"></select>
                 </div>
 
-                <div class="local">
+                <div class="select-c">
                     <label>Cidade:</label>
                     <select id="cidade" name="cidade" required class="local"></select>
                 </div>
 
 
-                <button type="submit" class="login">Cadastrar</button>
+                <button class="bt_confirm" type="submit" class="login">Cadastrar</button>
+                <button class="btn_return" type="button" class="login" onclick="location.href='listar-c.php'">Voltar</button>
             </form>
 
         </section>

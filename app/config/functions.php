@@ -38,12 +38,12 @@ function validardados_funcionarios($nome, $email, $senha, $perfil)
 function updateFuncionario($con, $id, $nome, $email, $senha, $perfil, $ativo)
 {
 
-    $sql = "UPDATE funcionarios SET nome='$nome', senha = '$senha',email='$email', perfil='$perfil', Stat='$ativo' WHERE id=$id";
+    $sql = "UPDATE funcionarios SET nome='$nome', senha = '$senha',email='$email', perfil='$perfil', ativo='$ativo' WHERE id=$id";
 
 
 
     if (mysqli_query($con, $sql)) {
-        echo "Funcionário atualizado com sucesso!";
+        echo "<script>alert('Funcionário atualizado com sucesso.'); history.back();</script>";
     } else {
         echo "Erro ao atualizar funcionário: " . mysqli_error($con);
     }
@@ -55,7 +55,7 @@ function updatecliente($con, $id, $nome, $data_nascimento, $email, $telefone, $e
     $sql = "UPDATE clientes SET nome='$nome', data_nascimento = '$data_nascimento', email='$email', telefone ='$telefone', estado = '$estado', cidade = '$cidade' ativo ='$ativo' WHERE id=$id";
 
     if (mysqli_query($con, $sql)) {
-        echo "Cliente atualizado com sucesso";
+        echo "<script>alert('Cliente atualizado com sucesso.'); history.back();</script>";
     } else {
         echo "Erro ao atualizar Cliente; " . mysqli_error($con);
     }
