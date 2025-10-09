@@ -19,9 +19,6 @@ function insertFuncionario($con, $nome, $email, $senha, $perfil)
 }
 
 
-
-
-
 function validardados_funcionarios($nome, $email, $senha, $perfil)
 {
     if (empty($nome) || empty($email) || empty($senha) || empty($perfil)) {
@@ -65,19 +62,13 @@ function updatecliente($con, $id, $nome, $data_nascimento, $email, $telefone, $e
 
 function insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade)
 {
+    $sql = "INSERT INTO clientes (nome, data_nascimento, cpf, email, telefone, estado, cidade)
+            VALUES ('$nome', '$data_nascimento', '$cpf', '$email', '$telefone', '$estado', '$cidade')";
 
-
-    $sql = "INSERT INTO clientes (nome, data_nascimento, cpf, email, telefone, estado, cidade) values ('$nome','$data_nascimento','$cpf','$email','$telefone','$estado', '$cidade')";
-
-    $query = (mysqli_query($con, $sql));
-
-    if ($query) {
-
-        $msg = "cliente cadastrado com sucesso! ";
-        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+    if (mysqli_query($con, $sql)) {
+        return mysqli_insert_id($con); 
     } else {
-        $msg = "Erro ao cadastrar cliente! ";
-        header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
+        return false; 
     }
 }
 
@@ -137,9 +128,17 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
         return false;
     }
 
-    insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade);
-    $msg = "Cliente cadastrado com sucesso ";
-    header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
-
     return true;
+}
+
+function registrarLog($con, $usuario_id, $acao, $tabela, $registro_id = null) {
+   
+    $acao = mysqli_real_escape_string($con, $acao);
+    $tabela = mysqli_real_escape_string($con, $tabela);
+    $registro_id = $registro_id ? intval($registro_id) : 'NULL';
+
+    $sql = "INSERT INTO logs (usuario_id, acao, tabela_afetada, registro_id)
+            VALUES ($usuario_id, '$acao', '$tabela', $registro_id)";
+    
+    mysqli_query($con, $sql);
 }
