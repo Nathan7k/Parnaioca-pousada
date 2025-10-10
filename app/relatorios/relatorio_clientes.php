@@ -19,7 +19,9 @@ $sqlCount = "SELECT
             WHERE 1=1";
 
 if (!empty($data_inicio_esc) && !empty($data_fim_esc)) {
-    $sqlCount .= " AND created_at BETWEEN '$data_inicio_esc 00:00:00' AND '$data_fim_esc 23:59:59'";
+    $sqlCount .= " AND created_at 
+                    BETWEEN '$data_inicio_esc 00:00:00' 
+                    AND '$data_fim_esc 23:59:59'";
 }
 
 $resCount = mysqli_query($con, $sqlCount);
@@ -29,10 +31,14 @@ if (!$resCount) {
 $contagem = mysqli_fetch_assoc($resCount);
 
 
-$sql = "SELECT id, nome, email, telefone, ativo, created_at FROM clientes WHERE 1=1";
+$sql = "SELECT id, nome, email, telefone, ativo, created_at 
+        FROM clientes 
+        WHERE 1=1";
 
 if (!empty($data_inicio_esc) && !empty($data_fim_esc)) {
-    $sql .= " AND created_at BETWEEN '$data_inicio_esc 00:00:00' AND '$data_fim_esc 23:59:59'";
+    $sql .= " AND created_at 
+    BETWEEN '$data_inicio_esc 00:00:00' 
+    AND '$data_fim_esc 23:59:59'";
 }
 
 $sql .= " ORDER BY ativo DESC, nome ASC";

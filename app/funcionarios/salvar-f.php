@@ -2,6 +2,7 @@
 include '../config/conexao.php';
 include '../config/functions.php';
 session_start(); 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];

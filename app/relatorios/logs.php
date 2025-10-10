@@ -48,7 +48,7 @@ $result = mysqli_query($con, $sql);
     </div>
 
     <div class="d-flex justify-content-end mt-3">
-        <a href="../index.php" class="btn btn-secondary">Voltar</a>
+        <a href="../relatorios/relatorios.php" class="btn btn-secondary">Voltar</a>
     </div>
 </div>
 

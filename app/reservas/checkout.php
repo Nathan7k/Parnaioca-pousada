@@ -10,8 +10,11 @@ if (!$acomodacao_id) {
 $sqlfrigobar = "SELECT * FROM itens_frigobar";
 $resultfrigobar = mysqli_query($con, $sqlfrigobar);
 
-$sqlacom = "SELECT nome, numero, valor FROM acomodacoes WHERE id = $acomodacao_id";
+$sqlacom = "SELECT nome, numero, valor 
+            FROM acomodacoes 
+            WHERE id = $acomodacao_id";
 $resacom = mysqli_query($con, $sqlacom);
+
 $acomodacao = mysqli_fetch_assoc($resacom);
 
 $sqlhosp = "SELECT h.id, h.cliente_id, h.data_checkin, h.data_checkout, c.nome, e.vaga_numero 
@@ -33,7 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hospedagem_id = $_POST['hospedagem_id'];
     $itens = $_POST['itens'] ?? [];
 
-    $sql_itens = "SELECT id, valor FROM itens_frigobar";
+    $sql_itens = "SELECT id, valor 
+                FROM itens_frigobar";
+
     $res_itens = mysqli_query($con, $sql_itens);
     $precos = [];
     while ($row = mysqli_fetch_assoc($res_itens)) {
@@ -71,16 +76,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                          WHERE id = {$hospedagem['id']}";
     mysqli_query($con, $sqlAtualizaTotal);
 
-    $sqlupdatehosp = "UPDATE hospedagens SET status = 'finalizado' WHERE id = {$hospedagem['id']}";
+    $sqlupdatehosp = "UPDATE hospedagens 
+                    SET status = 'finalizado' 
+                    WHERE id = {$hospedagem['id']}";
+
     if (mysqli_query($con, $sqlupdatehosp)) {
 
 
-        $sqlLiberaVaga = "UPDATE estacionamento SET ocupada = 0 
-                          WHERE acomodacao_id = $acomodacao_id AND ocupada = 1";
+        $sqlLiberaVaga = "UPDATE estacionamento 
+                        SET ocupada = 0 
+                        WHERE acomodacao_id = $acomodacao_id 
+                        AND ocupada = 1";
+
         mysqli_query($con, $sqlLiberaVaga);
 
 
-        $sqlupacom = "UPDATE acomodacoes SET ocupacao = 0 WHERE id = $acomodacao_id";
+        $sqlupacom = "UPDATE acomodacoes 
+                    SET ocupacao = 0 
+                    WHERE id = $acomodacao_id";
+
         mysqli_query($con, $sqlupacom);
 
 

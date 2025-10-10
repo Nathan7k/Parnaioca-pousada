@@ -35,21 +35,28 @@ function validardados_funcionarios($nome, $email, $senha, $perfil)
 function updateFuncionario($con, $id, $nome, $email, $senha, $perfil, $ativo)
 {
 
-    $sql = "UPDATE funcionarios SET nome='$nome', senha = '$senha',email='$email', perfil='$perfil', ativo='$ativo' WHERE id=$id";
+    $sql = "UPDATE funcionarios
+     SET nome='$nome', 
+     senha = '$senha',
+     email='$email', 
+     perfil='$perfil', 
+     ativo='$ativo' WHERE id=$id";
 
 
 
-    if (mysqli_query($con, $sql)) {
-        echo "<script>alert('Funcionário atualizado com sucesso.'); history.back();</script>";
+     if (mysqli_query($con, $sql)) {
+        return true; 
     } else {
-        echo "Erro ao atualizar funcionário: " . mysqli_error($con);
+        return "Erro ao atualizar funcionário: " . mysqli_error($con);
     }
 }
 
 function updatecliente($con, $id, $nome, $data_nascimento, $email, $telefone, $estado, $cidade, $ativo)
 {
 
-    $sql = "UPDATE clientes SET nome='$nome', data_nascimento = '$data_nascimento', email='$email', telefone ='$telefone', estado = '$estado', cidade = '$cidade' ativo ='$ativo' WHERE id=$id";
+    $sql = "UPDATE clientes 
+            SET nome='$nome', data_nascimento = '$data_nascimento', email='$email', telefone ='$telefone', estado = '$estado', cidade = '$cidade' ativo ='$ativo' 
+            WHERE id=$id";
 
     if (mysqli_query($con, $sql)) {
         echo "<script>alert('Cliente atualizado com sucesso.'); history.back();</script>";
@@ -61,6 +68,7 @@ function updatecliente($con, $id, $nome, $data_nascimento, $email, $telefone, $e
 
 
 function insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade)
+
 {
     $sql = "INSERT INTO clientes (nome, data_nascimento, cpf, email, telefone, estado, cidade)
             VALUES ('$nome', '$data_nascimento', '$cpf', '$email', '$telefone', '$estado', '$cidade')";

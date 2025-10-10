@@ -5,9 +5,9 @@
 
     $sql = "SELECT a.id AS acomodacao_id, a.tipo_id, a.nome AS acomodacao_nome,
                e.vaga_numero, e.ocupada
-        FROM acomodacoes a
-        LEFT JOIN estacionamento e ON a.id = e.acomodacao_id
-        ORDER BY a.id, e.vaga_numero";
+            FROM acomodacoes a
+            LEFT JOIN estacionamento e ON a.id = e.acomodacao_id
+            ORDER BY a.id, e.vaga_numero";
 
     $result = mysqli_query($con, $sql);
     ?>
@@ -30,49 +30,51 @@
 
  <body>
 
-    <main class="container">
-     <h2>Controle estacionamento</h2>
+     <main class="container">
+         <h2>Controle estacionamento</h2>
 
-     <table id="minhatabela" class="display">
+         <table id="minhatabela" class="display">
 
-         <thead
-             <tr>
-             <th>id</th>
-             <th>tipo_id</th>
-             <th>acomodação_id</th>
-             <th>número_da_vaga</th>
-             <th>vaga</th>
+             <thead>
 
-
-             </tr>
-         </thead>
-
-         <tbody>
-
-             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                  <tr>
-                     <td><?php echo $row['acomodacao_id'] ?></td>
-                     <td><?php echo $row['tipo_id'] ?></td>
-                     <td><?php echo $row['acomodacao_nome'] ?></td>
-                     <td><?php echo $row['vaga_numero'] ?? '-' ?></td>
-                     <td><?php echo isset($row['ocupada']) ? ($row['ocupada'] ? 'Sim' : 'Não') : 'Não cadastrada' ?></td>
+
+                     <th>id</th>
+                     <th>tipo_id</th>
+                     <th>acomodação_id</th>
+                     <th>número_da_vaga</th>
+                     <th>vaga</th>
+
+
                  </tr>
-             <?php } ?>
+             </thead>
 
-         </tbody>
+             <tbody>
+
+                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                     <tr>
+                         <td><?php echo $row['acomodacao_id'] ?></td>
+                         <td><?php echo $row['tipo_id'] ?></td>
+                         <td><?php echo $row['acomodacao_nome'] ?></td>
+                         <td><?php echo $row['vaga_numero'] ?? '-' ?></td>
+                         <td><?php echo isset($row['ocupada']) ? ($row['ocupada'] ? 'Sim' : 'Não') : 'Não cadastrada' ?></td>
+                     </tr>
+                 <?php } ?>
+
+             </tbody>
 
 
 
 
 
-     </table>
-     <script>
-         $('#minhatabela').DataTable({
-             "language": {
-                 "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
-             }
-         });
-     </script>
+         </table>
+         <script>
+             $('#minhatabela').DataTable({
+                 "language": {
+                     "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json"
+                 }
+             });
+         </script>
 
      </main>
  </body>

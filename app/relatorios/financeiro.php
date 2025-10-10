@@ -8,7 +8,10 @@ $filtro = "";
 if (!empty($data_inicial) && !empty($data_final)) {
     $data_inicial_esc = mysqli_real_escape_string($con, $data_inicial);
     $data_final_esc = mysqli_real_escape_string($con, $data_final);
-    $filtro = "AND h.data_checkin BETWEEN '$data_inicial_esc' AND '$data_final_esc'";
+    
+    $filtro = "AND h.data_checkin 
+                BETWEEN '$data_inicial_esc' 
+                AND '$data_final_esc'";
 }
 
 $sql = "SELECT 

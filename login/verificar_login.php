@@ -26,10 +26,10 @@ if ($usuario && $usuario['senha'] === $senha) {
 } else {
     
     $usuario_id = $usuario['id'] ?? 0; 
-    registrarLog($con, $usuario_id, "Tentativa de login falhou para $email", "funcionarios");
+    registrarLog($con, $usuario_id, "Tentativa de login falhou para $email", "login");
 
     $msg = "Usuário ou senha inválidos";
     session_destroy();
-    header("Location: index.php?msg=" . urlencode($msg));
+    header("Location: ../index.php?msg=" . urlencode($msg));
     exit;
 }

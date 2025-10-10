@@ -9,15 +9,22 @@ if (!$acomodacao_id) {
 }
 
 
-$sqlacom = "SELECT nome, numero, valor FROM acomodacoes where id = $acomodacao_id ";
+$sqlacom = "SELECT nome, numero, valor 
+            FROM acomodacoes 
+            where id = $acomodacao_id ";
 $resacom = mysqli_query($con, $sqlacom);
 $acomodacao = mysqli_fetch_assoc($resacom);
 
-$sqlClientes = "SELECT id, nome FROM clientes WHERE ativo = 1 ORDER BY nome";
+$sqlClientes = "SELECT id, nome 
+                FROM clientes 
+                WHERE ativo = 1 
+                ORDER BY nome";
 $resClientes = mysqli_query($con, $sqlClientes);
 
-$sqlvagas = "SELECT vaga_numero FROM estacionamento 
-             WHERE acomodacao_id = $acomodacao_id AND ocupada = 0";
+$sqlvagas = "SELECT vaga_numero 
+            FROM estacionamento 
+             WHERE acomodacao_id = $acomodacao_id 
+             AND ocupada = 0";
 $resvagas = mysqli_query($con, $sqlvagas);
 
 $sqlstatus = "SELECT status from hospedagens";
@@ -49,7 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>alert('A data de checkout deve ser maior que a data de checkin.'); history.back();</script>";
         die;
     }
-    $sqlcheck = "SELECT * FROM hospedagens where acomodacao_id = $acomodacao_id AND status IN ('reservado' , 'hospedado' ) AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
+    $sqlcheck = "SELECT * FROM hospedagens 
+                where acomodacao_id = $acomodacao_id 
+                AND status IN ('reservado' , 'hospedado' ) 
+                AND NOT (data_checkout <= '$data_checkin' OR data_checkin >= '$data_checkout' )";
 
     $resCheck = mysqli_query($con, $sqlcheck);
 
@@ -76,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $sqlinsert = "INSERT INTO hospedagens (cliente_id, acomodacao_id, funcionario_id, data_checkin, data_checkout, status)
-                      VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'reservado')";
+                VALUES ($cliente_id, $acomodacao_id, $funcionario_id, '$data_checkin', '$data_checkout', 'reservado')";
 
     if (mysqli_query($con, $sqlinsert)) {
 

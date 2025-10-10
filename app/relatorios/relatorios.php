@@ -18,10 +18,16 @@
     <div class="d-flex justify-content-center mt-3">
         <a href="../relatorios/relatorio_clientes.php" class="btn btn-primary">Relatório Clientes</a>
     </div>
+    
+    <div class="d-flex justify-content-center mt-3">
+        <a href="../relatorios/logs.php" class="btn btn-primary">logs de todo o sistema</a>
+    </div>
 
      <div class="d-flex justify-content-center mt-3">
         <a href="../funcionarios/home.php" class="btn btn-secondary">Voltar</a>
     </div>
+
+
 
 </body>
 </html>

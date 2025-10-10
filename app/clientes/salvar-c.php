@@ -25,7 +25,9 @@ if ($id_cliente) {
     $msg = "Cliente cadastrado com sucesso!";
     header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
     exit;
+
 } else {
+    
     $msg = "Erro ao cadastrar cliente!";
     header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
     exit;

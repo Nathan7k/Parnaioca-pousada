@@ -10,8 +10,12 @@
     include '../config/conexao.php';
 
     $iditens = $_GET['id'];
-    $sql = "UPDATE itens_frigobar set ativo = '0' WHERE id = $iditens";
-    $update = mysqli_query($con, $sql);    
+    $sql = "UPDATE itens_frigobar 
+            set ativo = '0' 
+            WHERE id = $iditens";
+
+    $update = mysqli_query($con, $sql); 
+       
     if($update){
         echo "<script>alert('Inativado com sucesso!'); location.href='itens-frigobar.php';</script>";
     } else {

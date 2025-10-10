@@ -16,7 +16,9 @@
 
     $id_funcionario = $_GET['id'];
 
-    $sql = "SELECT * FROM funcionarios WHERE id = $id_funcionario";
+    $sql = "SELECT * FROM funcionarios 
+            WHERE id = $id_funcionario";
+            
     $busca = mysqli_query($con, $sql);
     $array = mysqli_fetch_array($busca);
 
