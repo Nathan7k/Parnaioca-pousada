@@ -65,7 +65,6 @@
                     $ativo = $array['ativo'];
                     $reg_date = $array['created_at'];
                     $up_date = $array['updated_at'];
-
                     $reg_date = date("d/m/Y H:i", strtotime($array['created_at']));
                     $up_date  = date("d/m/Y H:i", strtotime($array['updated_at']));
                 ?>
@@ -76,7 +75,7 @@
                         <td><?php echo $nome ?></td>
                         <td><?php echo $email ?></td>
                         <td><?php echo $perfil ?></td>
-                        <td><?php echo $ativo ?></td>
+                        <td><?php echo ($ativo == 1) ? 'ativo':'inativo'; ?></td>
                         <td><?php echo $reg_date ?></td>
                         <td><?php echo $up_date ?></td>
 

@@ -70,10 +70,16 @@ function updatecliente($con, $id, $nome, $data_nascimento, $email, $telefone, $e
 function insert_Clientes($con, $nome, $data_nascimento, $cpf, $email, $telefone, $estado, $cidade)
 
 {
+    $nome = mysqli_real_escape_string($con, $nome);
+    $email = mysqli_real_escape_string($con, $email);
+    $estado = mysqli_real_escape_string($con, $estado);
+    $cidade = mysqli_real_escape_string($con, $cidade);
+
     $sql = "INSERT INTO clientes (nome, data_nascimento, cpf, email, telefone, estado, cidade)
             VALUES ('$nome', '$data_nascimento', '$cpf', '$email', '$telefone', '$estado', '$cidade')";
 
     if (mysqli_query($con, $sql)) {
+        
         return mysqli_insert_id($con); 
     } else {
         return false; 
@@ -90,7 +96,7 @@ function validardados_clientes($con, $nome, $data_nascimento, $cpf, $email, $tel
     }
 
     if (strlen($nome) < 3) {
-        $msg = "o nome deve ter pelo menos 8 caracteres ";
+        $msg = "o nome deve ter pelo menos 3 caracteres ";
         header("Location: cadastrar-clientes.php?msg=" . urlencode($msg));
         return false;
     }

@@ -105,7 +105,7 @@ while ($row = mysqli_fetch_assoc($resStatus)) {
         <div class="col-md-4">
             <div class="card border-info h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Total Hospedagens</h5>
+                    <h5 class="card-title">Faturamento Hospedagens</h5>
                     <h3 class="text-info">R$ <?= number_format($fin['total_hospedagens'] ?? 0, 2, ',', '.') ?></h3>
                 </div>
             </div>
@@ -114,7 +114,7 @@ while ($row = mysqli_fetch_assoc($resStatus)) {
         <div class="col-md-4">
             <div class="card border-warning h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Total Frigobar</h5>
+                    <h5 class="card-title">Faturamento Frigobar</h5>
                     <h3 class="text-warning">R$ <?= number_format($frig['total_frigobar'] ?? 0, 2, ',', '.') ?></h3>
                 </div>
             </div>
@@ -123,7 +123,7 @@ while ($row = mysqli_fetch_assoc($resStatus)) {
         <div class="col-md-4">
             <div class="card border-dark h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Total Geral</h5>
+                    <h5 class="card-title">Faturamento Total</h5>
                     <h3 class="text-dark fw-bold">R$ <?= number_format($totalGeral, 2, ',', '.') ?></h3>
                 </div>
             </div>

@@ -26,7 +26,7 @@ if ($resultup) {
     exit;
     
   } else {
-    echo "<script>alert('Nenhuma hospedagem com status reservado.'); history.back();</script>";
+    echo "<script>alert('Não é possível realizar checkin, para reservas com status diferentes de Reservado.'); history.back();</script>";
   }
 } else {
   echo "<script>alert('Erro ao atualizar status de checkin.'); history.back();</script>";

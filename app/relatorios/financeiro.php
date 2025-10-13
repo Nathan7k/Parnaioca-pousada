@@ -40,8 +40,6 @@ $result = mysqli_query($con, $sql);
     <meta charset="UTF-8">
     <title>Relatório Financeiro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
 </head>
@@ -141,7 +139,7 @@ $(document).ready(function() {
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
         },
-        order: [[0, 'asc']],
+        order: [[0, 'desc']],
         pageLength: 10
     });
 });

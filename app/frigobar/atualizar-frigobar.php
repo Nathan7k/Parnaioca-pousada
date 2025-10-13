@@ -12,7 +12,7 @@ $sql = "UPDATE itens_frigobar
         WHERE id=$id";
         
 if (mysqli_query($con, $sql)) {
-    echo "Item atualizado com sucesso";
+    echo "<script>alert('Item atualizado com sucesso'); history.back();</script>";
 } else {
-    echo "Erro ao atualizar; " . mysqli_error($con);
+    echo "<script>alert('Erro ao atualizar item'); history.back();</script>";
 }

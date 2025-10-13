@@ -29,7 +29,7 @@ $reshosp = mysqli_query($con, $sqlhosp);
 $hospedagem = mysqli_fetch_assoc($reshosp);
 
 if (!$hospedagem) {
-    die("Nenhuma hospedagem ativa encontrada para essa acomodação!");
+    die( "<script>alert('Não é possível realizar checkout para reservas com status diferente de hospedado'); history.back();</script>");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

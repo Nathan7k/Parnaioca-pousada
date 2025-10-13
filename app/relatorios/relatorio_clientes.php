@@ -133,7 +133,7 @@ if (!$result) {
                         echo '<td>' . htmlspecialchars($cliente['email']) . '</td>';
                         echo '<td>' . htmlspecialchars($cliente['telefone']) . '</td>';
                         echo '<td class="text-center ' . $statusClasse . '">' . $statusTexto . '</td>';
-                        echo '<td>' . $cliente['created_at'] . '</td>';
+                        echo '<td>' .  date ("d/m/Y H:i",strtotime ($cliente['created_at'])) . '</td>';
                         echo '</tr>';
                     }
                 } else {
@@ -173,7 +173,7 @@ $(document).ready(function() {
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
         },
-        order: [[0, 'asc']],
+        order: [[0, 'desc']],
         pageLength: 10
     });
 });

@@ -12,7 +12,7 @@ $sql = "SELECT * FROM funcionarios WHERE email = '$email' AND ativo = 1";
 $result = mysqli_query($con, $sql);
 $usuario = mysqli_fetch_assoc($result);
 
-if ($usuario && $usuario['senha'] === $senha) {
+if ($usuario && $usuario['senha'] === $senha ) {
     
     $_SESSION['perfil'] = $usuario['perfil'];
     $_SESSION['email'] = $usuario['email'];
@@ -26,6 +26,7 @@ if ($usuario && $usuario['senha'] === $senha) {
 } else {
     
     $usuario_id = $usuario['id'] ?? 0; 
+
     registrarLog($con, $usuario_id, "Tentativa de login falhou para $email", "login");
 
     $msg = "Usuário ou senha inválidos";

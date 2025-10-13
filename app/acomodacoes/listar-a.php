@@ -39,7 +39,6 @@
                 <th>Nome</th>
                 <th>Valor</th>
                 <th>Capacidade máxima</th>
-                <th>Ocupação</th>
                 <th>Status</th>
                 <th>Ações</th>
             </tr>
@@ -55,7 +54,6 @@
             $nome  = $array['nome'];
             $valor = $array['valor'];
             $capacidade_maxima = $array['capacidade_maxima'];
-            $ocupacao = $array['ocupacao'];
             $ativo = $array['ativo'];
         ?>
 
@@ -66,8 +64,7 @@
                 <td><?php echo $nome ?></td>
                 <td><?php echo $valor ?></td>
                 <td><?php echo $capacidade_maxima?></td>
-                <td><?php echo $ocupacao ?></td>
-                <td><?php echo $ativo ?></td>
+                <td><?php echo ($ativo == 1) ? 'ativo' : 'inativo' ?></td>
 
                <td>
                             <a href="editar-a.php?id=<?php echo $id ?>">

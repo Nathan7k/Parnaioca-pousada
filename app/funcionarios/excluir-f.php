@@ -22,7 +22,9 @@
                     WHERE id = $id_funcionario";
 
         $resultbusca = mysqli_query($con, $sqlbusca);
+        
         $dados = mysqli_fetch_assoc($resultbusca);
+
         $nome_funcionario = $dados['nome'] ?? 'Desconhecido';
 
         $sql = "UPDATE funcionarios
@@ -34,6 +36,7 @@
         if ($deletar) {
 
             $usuario_id = $_SESSION['usuario_id'];
+
             registrarLog($con, $usuario_id, "Inativou o funcionário $nome_funcionario", "funcionarios", $id_funcionario);
 
             echo "<script>alert('Funcionário inativado com sucesso!'); location.href='listar-f.php';</script>";

@@ -69,7 +69,7 @@
                 <td><?php echo $id ?></td>
                 <td><?php echo $nome ?></td>
                 <td><?php echo $valor ?></td>
-                <td><?php echo $ativo ?></td>
+                <td><?php echo ($ativo == 1) ? 'ativo' : 'inativo' ?></td>
                 
 
                  <td>
