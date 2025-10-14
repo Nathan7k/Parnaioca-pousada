@@ -28,7 +28,9 @@ $resFin = mysqli_query($con, $sqlFin);
 $fin = mysqli_fetch_assoc($resFin);
 
 
-$sqlFrig = "SELECT SUM(total) AS total_frigobar FROM consumo_frigobar";
+$sqlFrig = "SELECT SUM(total) AS total_frigobar 
+            FROM consumo_frigobar";
+            
 $resFrig = mysqli_query($con, $sqlFrig);
 $frig = mysqli_fetch_assoc($resFrig);
 

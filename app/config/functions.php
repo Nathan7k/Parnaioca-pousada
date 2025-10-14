@@ -55,13 +55,20 @@ function updatecliente($con, $id, $nome, $data_nascimento, $email, $telefone, $e
 {
 
     $sql = "UPDATE clientes 
-            SET nome='$nome', data_nascimento = '$data_nascimento', email='$email', telefone ='$telefone', estado = '$estado', cidade = '$cidade' ativo ='$ativo' 
+            SET nome='$nome', 
+            data_nascimento = '$data_nascimento', 
+            email='$email',
+            telefone ='$telefone',
+            estado = '$estado',
+            cidade = '$cidade',
+            ativo ='$ativo'
             WHERE id=$id";
 
     if (mysqli_query($con, $sql)) {
-        echo "<script>alert('Cliente atualizado com sucesso.'); history.back();</script>";
+        return true;
     } else {
         echo "Erro ao atualizar Cliente; " . mysqli_error($con);
+        return false;
     }
 }
 

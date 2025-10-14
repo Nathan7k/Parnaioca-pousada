@@ -61,15 +61,15 @@
                 while ($array = mysqli_fetch_array($busca)) {
                     $id = $array['id'];
                     $nome = $array['nome'];
-                    $data_nascimento = date ("d/m/y H:i", strtotime($array['data_nascimento']));
+                    $data_nascimento =!empty($array['data_nascimento']) ? date ("d/m/y H:i", strtotime($array['data_nascimento'])) : '';
                     $cpf = $array['cpf'];
                     $email = $array['email'];
                     $telefone = $array['telefone'];
                     $estado = $array['estado'];
                     $cidade = $array['cidade'];
                     $ativo = $array['ativo'];
-                    $reg_date = date("d/m/Y H:i", strtotime($array['created_at']));
-                    $up_date  = date("d/m/Y H:i", strtotime($array['updated_at']));
+                    $reg_date =!empty($array['created_at']) ? date("d/m/Y H:i", strtotime($array['created_at'])) : '';
+                    $up_date  = !empty($array['updated_at']) ? date("d/m/Y H:i", strtotime($array['updated_at'])) : '';
                 ?>
 
                     <tr>

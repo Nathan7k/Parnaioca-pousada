@@ -42,7 +42,7 @@
                 <input type="email" name="email" value="<?php echo $array['email'] ?>">
 
                 <label>Telefone</label>
-                <input id="telefone" type="text" name="senha" value="<?php echo $array['telefone'] ?>">
+                <input id="telefone" type="text" name="telefone" value="<?php echo $array['telefone'] ?>">
 
 
                 <div class="select-c">
@@ -55,7 +55,7 @@
                 
                 <div class="select-s">
                     <label>Status:</label>
-                    <select name="stat">
+                    <select name="ativo">
                         <option value="ativo" <?php if ($array['ativo'] == 'ativo') {
                                                     echo "selected";
                                                 } ?>>Ativo</option>
