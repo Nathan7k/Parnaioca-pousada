@@ -9,14 +9,16 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="../assets/css/navbar-listas.css">
     <link rel="stylesheet" href="../assets/css/table.css">
-    
+
 </head>
+
 <body>
-    
+
     <?php
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';
 
+    
 
     $sql = "SELECT * FROM acomodacoes";
 
@@ -27,61 +29,61 @@
     }
     ?>
 
-<a href="cadastrar-a.php"><button class="botao-cadastrar">cadastrar</button></a>
-<main class="container">
-    <h2>lista de acomodações</h2>
-    <table id="minhatabela" class="display">
+    <a href="cadastrar-a.php"><button class="botao-cadastrar">cadastrar</button></a>
+    <main class="container">
+        <h2>lista de acomodações</h2>
+        <table id="minhatabela" class="display">
 
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Tipo</th>
-                <th>Nome</th>
-                <th>Valor</th>
-                <th>Capacidade máxima</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Capacidade máxima</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
 
-    <tbody>
-        <?php
-
-
-        while ($array = mysqli_fetch_array($busca)) {
-            $id = $array['id'];
-            $tipo_id = $array['tipo_id'];
-            $nome  = $array['nome'];
-            $valor = $array['valor'];
-            $capacidade_maxima = $array['capacidade_maxima'];
-            $ativo = $array['ativo'];
-        ?>
+            <tbody>
+                <?php
 
 
-            <tr>
-                <td><?php echo $id ?></td>
-                <td><?php echo $tipo_id ?></td>
-                <td><?php echo $nome ?></td>
-                <td><?php echo $valor ?></td>
-                <td><?php echo $capacidade_maxima?></td>
-                <td><?php echo ($ativo == 1) ? 'ativo' : 'inativo' ?></td>
+                while ($array = mysqli_fetch_array($busca)) {
+                    $id = $array['id'];
+                    $tipo_id = $array['tipo_id'];
+                    $nome  = $array['nome'];
+                    $valor = $array['valor'];
+                    $capacidade_maxima = $array['capacidade_maxima'];
+                    $ativo = $array['ativo'];
+                ?>
 
-               <td>
+
+                    <tr>
+                        <td><?php echo $id ?></td>
+                        <td><?php echo ($tipo_id == 1) ? 'Suíte' : 'Apartamento' ?></td>
+                        <td><?php echo $nome ?></td>
+                        <td><?php echo $valor ?></td>
+                        <td><?php echo $capacidade_maxima ?></td>
+                        <td><?php echo ($ativo == 1) ? 'ativo' : 'inativo' ?></td>
+
+                        <td>
                             <a href="editar-a.php?id=<?php echo $id ?>">
                                 <button class="btn-editar">Editar</button>
                             </a>
-                            
+
                             <a href="excluir-a.php?id=<?php echo $id ?>">
                                 <button class="btn-inativar">Inativar</button>
                             </a>
                         </td>
-            </tr>
-        <?php
-        }
-        ?>
-        </tbody>
-	
-    </table> 
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+
+        </table>
     </main>
 
     <script>
