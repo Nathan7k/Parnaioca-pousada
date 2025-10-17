@@ -3,7 +3,7 @@
     include '../funcionarios/navbar-listas.php';
 
 
-    $sql = "SELECT a.id AS acomodacao_id, a.tipo_id, a.nome AS acomodacao_nome,
+    $sql = "SELECT a.id AS acomodacao_id, a.tipo, a.nome AS acomodacao_nome,
                e.vaga_numero, e.ocupada
             FROM acomodacoes a
             LEFT JOIN estacionamento e ON a.id = e.acomodacao_id
@@ -40,10 +40,10 @@
                  <tr>
 
                      <th>id</th>
-                     <th>tipo_id</th>
-                     <th>acomodação_id</th>
-                     <th>número_da_vaga</th>
-                     <th>vaga</th>
+                     <th>tipo</th>
+                     <th>acomodação</th>
+                     <th>número da vaga</th>
+                     <th>vaga ocupada</th>
 
 
                  </tr>
@@ -54,7 +54,7 @@
                  <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                      <tr>
                          <td><?php echo $row['acomodacao_id'] ?></td>
-                         <td><?php echo $row['tipo_id'] ?></td>
+                         <td><?php echo $row['tipo'] ?></td>
                          <td><?php echo $row['acomodacao_nome'] ?></td>
                          <td><?php echo $row['vaga_numero'] ?? '-' ?></td>
                          <td><?php echo isset($row['ocupada']) ? ($row['ocupada'] ? 'Sim' : 'Não') : 'Não cadastrada' ?></td>

@@ -55,6 +55,8 @@ while ($row = mysqli_fetch_assoc($resStatus)) {
     <meta charset="UTF-8">
     <title>Dashboard - Pousada Paranioca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/root.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -114,7 +116,7 @@ while ($row = mysqli_fetch_assoc($resStatus)) {
         </div>
 
         <div class="col-md-4">
-            <div class="card border-warning h-100">
+            <div class="card border-warning h-100" >
                 <div class="card-body">
                     <h5 class="card-title">Faturamento Frigobar</h5>
                     <h3 class="text-warning">R$ <?= number_format($frig['total_frigobar'] ?? 0, 2, ',', '.') ?></h3>

@@ -27,7 +27,7 @@
 
              <div class="input-box">
                 <label class="label">valor</label>
-                <input type="number" name="valor" placeholder="valor">
+                <input type="number" name="valor" placeholder="valor" min = 0>
             </div></br></br>
 
             

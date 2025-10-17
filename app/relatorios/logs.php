@@ -1,5 +1,7 @@
 <?php
 include '../config/conexao.php';
+include './navBar.php';
+
 
 $sql = "SELECT l.*, f.nome AS funcionario
         FROM logs l
@@ -18,6 +20,7 @@ $result = mysqli_query($con, $sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+    <link href="../assets/css/root.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
@@ -45,12 +48,12 @@ $result = mysqli_query($con, $sql);
                 <tbody>
                     <?php while ($log = mysqli_fetch_assoc($result)) { ?>
                         <tr>
-                            <td><?= $log['id'] ?></td>
-                            <td><?= $log['funcionario'] ?></td>
-                            <td><?= $log['acao'] ?></td>
-                            <td><?= $log['tabela_afetada'] ?></td>
-                            <td><?= $log['registro_id'] ?></td>
-                            <td><?= date('d/m/Y H:i:s', strtotime($log['created_at'])) ?></td>
+                            <td><?php echo $log['id'] ?></td>
+                            <td><?php echo $log['funcionario'] ?></td>
+                            <td><?php echo $log['acao'] ?></td>
+                            <td><?php echo $log['tabela_afetada'] ?></td>
+                            <td><?php echo $log['registro_id'] ?></td>
+                            <td><?php echo date('d/m/Y H:i:s', strtotime($log['created_at'])) ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -58,7 +61,7 @@ $result = mysqli_query($con, $sql);
         </div>
 
         <div class="d-flex justify-content-end mt-3">
-            <a href="../relatorios/relatorios.php" class="btn btn-secondary">Voltar</a>
+            <a href="../funcionarios/home.php" class="btn btn-secondary">Voltar</a>
         </div>
     </div>
 

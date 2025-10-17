@@ -1,5 +1,7 @@
 <?php
 include '../config/conexao.php';
+include '../config/functions.php';
+session_start();
 
 
 $acomodacao_id = $_GET['acomodacao_id'] ?? null;
@@ -8,6 +10,11 @@ if (!$acomodacao_id) {
   die("Acomodação não informada!");
 }
 
+$sqlacom = "SELECT nome FROM acomodacoes WHERE id = $acomodacao_id";
+$resacom = mysqli_query($con, $sqlacom);
+$acomodacao = mysqli_fetch_assoc($resacom);
+$nome = $acomodacao['nome'] ?? 'Desconhecido';
+
 $sqlupcheckin = "UPDATE hospedagens 
                 SET status = 'hospedado' 
                 WHERE acomodacao_id = $acomodacao_id 
@@ -15,21 +22,32 @@ $sqlupcheckin = "UPDATE hospedagens
 
 $resultup = mysqli_query($con, $sqlupcheckin);
 
-if ($resultup) {
-  if (mysqli_affected_rows($con) > 0) {
-    $sqlupacom = "UPDATE acomodacoes 
-    SET ocupacao = 1 
-    WHERE id = $acomodacao_id";
+ 
+    if (mysqli_affected_rows($con) > 0) {
 
-    $acomres = mysqli_query($con, $sqlupacom);
-    header("location:hospedes.php");
-    exit;
-    
-  } else {
-    echo "<script>alert('Não é possível realizar checkin, para reservas com status diferentes de Reservado.'); history.back();</script>";
-  }
+      $sqlupacom = "UPDATE acomodacoes 
+      SET ocupacao = 1 
+      WHERE id = $acomodacao_id";
+
+      $acomres = mysqli_query($con, $sqlupacom);
+
+    $usuario_id = $_SESSION['usuario_id'] ?? 0;
+
+  registrarLog($con, $usuario_id, "Realizou o check-in da acomodação $nome", "hospedagens", $acomodacao_id);
+
+  
+  echo "<script>
+    alert('Check-in realizado com sucesso.');
+    window.location = document.referrer;
+</script>";
+
+
 } else {
-  echo "<script>alert('Erro ao atualizar status de checkin.'); history.back();</script>";
+  echo "<script>
+    alert('Não é possível realizar check-in para reservas com status diferente de Reservado.');
+    window.location = document.referrer;
+</script>";
+
 }
 
 ?>

@@ -13,7 +13,6 @@ CREATE TABLE funcionarios (
     updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
@@ -29,26 +28,16 @@ CREATE TABLE clientes (
 );
 
 
-CREATE TABLE tipos_acomodacao (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
 CREATE TABLE acomodacoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    tipo_id INT NOT NULL,
     nome VARCHAR(100) NOT NULL,
-    numero VARCHAR(10) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
     valor DECIMAL(10,2) NOT NULL,
     capacidade_maxima INT NOT NULL,
-    ocupacao TINYINT(1) DEFAULT 1,
+    ocupacao TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (tipo_id) REFERENCES tipos_acomodacao(id)
-    ativo TINYINT(1) DEFAULT 1,
+    ativo TINYINT(1) DEFAULT 1
 );
 
 
@@ -59,19 +48,6 @@ CREATE TABLE itens_frigobar (
     ativo TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-CREATE TABLE acomodacao_itens_frigobar (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    acomodacao_id INT NOT NULL,
-    item_id INT NOT NULL,
-    quantidade INT DEFAULT 0,
-    ativo TINYINT(1) DEFAULT 1,
-    FOREIGN KEY (acomodacao_id) REFERENCES acomodacoes(id),
-    FOREIGN KEY (item_id) REFERENCES itens_frigobar(id)
-);
-
-
 
 CREATE TABLE hospedagens (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -88,8 +64,6 @@ CREATE TABLE hospedagens (
     FOREIGN KEY (acomodacao_id) REFERENCES acomodacoes(id),
     FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
 );
-
-
 
 CREATE TABLE consumo_frigobar (
     id INT AUTO_INCREMENT PRIMARY KEY,

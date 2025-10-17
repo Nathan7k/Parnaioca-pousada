@@ -31,7 +31,7 @@
                 <input type="text" name="nome" value="<?php echo $array['nome'] ?>">
 
                 <label>Valor</label>
-                <input type="number" name="valor">
+                <input type="number" name="valor" min = 0>
 
                 <label>Status</label>
                 <select name="ativo">

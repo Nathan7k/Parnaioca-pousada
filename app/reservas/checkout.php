@@ -10,7 +10,7 @@ if (!$acomodacao_id) {
 $sqlfrigobar = "SELECT * FROM itens_frigobar";
 $resultfrigobar = mysqli_query($con, $sqlfrigobar);
 
-$sqlacom = "SELECT nome, numero, valor 
+$sqlacom = "SELECT nome, tipo, valor 
             FROM acomodacoes 
             WHERE id = $acomodacao_id";
 $resacom = mysqli_query($con, $sqlacom);
@@ -117,12 +117,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="bg-light">
     <div class="container mt-5 p-4 bg-white shadow rounded">
-        <h2 class="mb-3 text-center"> Check-out - <?php echo $acomodacao['nome']; ?> (<?php echo $acomodacao['numero']; ?>)</h2>
+        
+        <h2 class="mb-3 text-center"> Check-out - <?php echo $acomodacao['nome']; ?></h2>
 
         <p><strong>Cliente:</strong> <?php echo $hospedagem['nome']; ?></p>
+
         <p><strong>Data Check-in:</strong> <?php echo date('d/m/Y H:i', strtotime($hospedagem['data_checkin'])); ?></p>
+
         <p><strong>Data Prevista Check-out:</strong> <?php echo date('d/m/Y H:i', strtotime($hospedagem['data_checkout'])); ?></p>
+
         <p><strong>Vaga utilizada:</strong> <?php echo $hospedagem['vaga_numero'] ?: "Nenhuma"; ?></p>
+
         <p><strong>Valor diária:</strong> R$ <?php echo number_format($acomodacao['valor'], 2, ',', '.'); ?></p>
 
         <hr>
@@ -131,20 +136,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="hidden" name="hospedagem_id" value="<?php echo $hospedagem['id']; ?>">
 
             <h4>Consumo do Frigobar</h4>
+
             <div class="row">
+
                 <?php while ($item = mysqli_fetch_assoc($resultfrigobar)) { ?>
                     <div class="col-md-4 mb-3">
+                        
                         <label class="form-label"><?php echo $item['nome']; ?> (R$ <?php echo number_format($item['valor'], 2, ',', '.'); ?>)</label>
+
                         <input type="number" name="itens[<?php echo $item['id']; ?>]" class="form-control" min="0" value="0">
+
                     </div>
+
                 <?php } ?>
+
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Emitir Nota e Finalizar</button>
         </form>
 
         <div class="mt-3 text-center">
-            <a href="acomodacoes.php" class="btn btn-secondary"> Voltar</a>
+            <a href="hospedes.php" class="btn btn-secondary"> Voltar</a>
         </div>
     </div>
 </body>

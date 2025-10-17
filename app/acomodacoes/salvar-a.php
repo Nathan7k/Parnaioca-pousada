@@ -5,14 +5,13 @@ include '../config/functions.php';
 session_start();
 
 
-$tipo_id = $_POST['tipo_id'];
+$tipo = $_POST['tipo'];
 $nome = $_POST['nome'];
-$numero = $_POST['numero'];
 $valor = $_POST['valor'];
 $capacidade_maxima = $_POST['capacidade_maxima'];
 $quantidade_vagas = (int) $_POST['quantidade_vagas'];
 
-$sql = "insert into acomodacoes (tipo_id, nome, numero, valor, capacidade_maxima) values ('$tipo_id', '$nome','$numero', '$valor', '$capacidade_maxima')";
+$sql = "insert into acomodacoes (tipo, nome, valor, capacidade_maxima) values ('$tipo', '$nome','$valor', '$capacidade_maxima')";
 
 $query = mysqli_query($con, $sql);
 

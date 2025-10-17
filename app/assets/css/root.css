@@ -1,0 +1,22 @@
+:root {
+  
+  --bs-primary: #003366;
+  --bs-primary-rgb: 0, 51, 102;
+  --bs-primary-bg-subtle: #003366;
+  --bs-primary-border-subtle: #003366;
+
+ 
+
+
+
+  
+  --bs-body-font-family: "Arial", sans-serif;
+}
+
+
+.nav-link.active {
+  color: #fff ;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  font-weight: bold;
+}

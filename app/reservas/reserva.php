@@ -9,7 +9,7 @@ if (!$acomodacao_id) {
 }
 
 
-$sqlacom = "SELECT nome, numero, valor 
+$sqlacom = "SELECT nome, tipo, valor 
             FROM acomodacoes 
             where id = $acomodacao_id ";
 $resacom = mysqli_query($con, $sqlacom);
@@ -105,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <main class="container">
-        <h2 class="txth2">Reservar <?php echo $acomodacao['nome'] ?> (<?php echo $acomodacao['numero']; ?>)</h2>
+        <h2 class="txth2">Reservar <?php echo $acomodacao['nome'] ?> (<?php echo $acomodacao['tipo']; ?>)</h2>
         <p class="parag">Valor da diária: R$ <?php echo $acomodacao['valor']; ?> </p></br></br>
 
 

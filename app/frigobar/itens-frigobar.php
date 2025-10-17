@@ -47,7 +47,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Valor</th>
-                <th>Ativo</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
         </thead>

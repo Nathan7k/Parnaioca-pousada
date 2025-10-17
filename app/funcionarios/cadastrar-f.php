@@ -45,6 +45,9 @@
     </main>
     <?php
     include '../config/conexao.php';
+    include '../../login/verificar_permissao.php';
+
+    verificarPerfil(['admin']);
     
 
     if (isset($_GET['msg'])) {

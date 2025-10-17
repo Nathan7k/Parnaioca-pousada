@@ -18,6 +18,9 @@
 
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';
+    include '../../login/verificar_permissao.php';
+
+    verificarPerfil(['admin']);
 
 
     $sql = "SELECT * FROM funcionarios order by ativo desc ";
@@ -47,8 +50,8 @@
                     <th>Email</th>
                     <th>Perfil</th>
                     <th>Status</th>
-                    <th>reg_date</th>
-                    <th>up_date</th>
+                    <th>data de registro</th>
+                    <th>última alteração</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -65,8 +68,9 @@
                     $ativo = $array['ativo'];
                     $reg_date = $array['created_at'];
                     $up_date = $array['updated_at'];
-                    $reg_date = date("d/m/Y H:i", strtotime($array['created_at']));
-                    $up_date  = date("d/m/Y H:i", strtotime($array['updated_at']));
+                    $reg_date = !empty($array['created_at']) ? date("d/m/Y H:i", strtotime($array['created_at'])):'-';
+
+                    $up_date  = !empty($array['updated_at']) ? date("d/m/Y H:i", strtotime($array['updated_at'])) : '-';
                 ?>
 
 

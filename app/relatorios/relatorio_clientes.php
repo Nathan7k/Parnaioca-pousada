@@ -1,14 +1,16 @@
 <?php
 include '../config/conexao.php';
+include './navBar.php';
 session_start();
+$pagina_atual = basename($_SERVER['PHP_SELF']);
 
 
 $data_inicio = $_GET['data_inicio'] ?? null;
 $data_fim = $_GET['data_fim'] ?? null;
 
 
-$data_inicio_esc = mysqli_real_escape_string($con, $data_inicio);
-$data_fim_esc = mysqli_real_escape_string($con, $data_fim);
+$data_inicio_esc = mysqli_real_escape_string($con, $data_inicio ?? '');
+$data_fim_esc = mysqli_real_escape_string($con, $data_fim ?? '');
 
 
 $sqlCount = "SELECT 
@@ -26,7 +28,7 @@ if (!empty($data_inicio_esc) && !empty($data_fim_esc)) {
 
 $resCount = mysqli_query($con, $sqlCount);
 if (!$resCount) {
-    die("Erro na consulta SQL de contagem: " . mysqli_error($con));
+    die("Erro na consulta de contagem: " . mysqli_error($con));
 }
 $contagem = mysqli_fetch_assoc($resCount);
 
@@ -44,7 +46,7 @@ if (!empty($data_inicio_esc) && !empty($data_fim_esc)) {
 $sql .= " ORDER BY ativo DESC, nome ASC";
 $result = mysqli_query($con, $sql);
 if (!$result) {
-    die("Erro na consulta SQL de clientes: " . mysqli_error($con));
+    die("Erro na consulta de clientes: " . mysqli_error($con));
 }
 ?>
 
@@ -58,6 +60,7 @@ if (!$result) {
     
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+    <link href="../assets/css/root.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -96,11 +99,11 @@ if (!$result) {
     <form method="GET" class="row g-3 mb-4">
         <div class="col-md-3">
             <label class="form-label">Data Inicial</label>
-            <input type="date" name="data_inicio" class="form-control" value="<?= htmlspecialchars($data_inicio) ?>">
+            <input type="date" name="data_inicio" class="form-control" value="<?= $data_inicio ?>">
         </div>
         <div class="col-md-3">
             <label class="form-label">Data Final</label>
-            <input type="date" name="data_fim" class="form-control" value="<?= htmlspecialchars($data_fim) ?>">
+            <input type="date" name="data_fim" class="form-control" value="<?= $data_fim ?>">
         </div>
         <div class="col-md-3 align-self-end">
             <button type="submit" class="btn btn-primary">Filtrar</button>
@@ -129,15 +132,15 @@ if (!$result) {
 
                         echo '<tr>';
                         echo '<td>' . $cliente['id'] . '</td>';
-                        echo '<td>' . htmlspecialchars($cliente['nome']) . '</td>';
-                        echo '<td>' . htmlspecialchars($cliente['email']) . '</td>';
-                        echo '<td>' . htmlspecialchars($cliente['telefone']) . '</td>';
+                        echo '<td>' . $cliente['nome'] . '</td>';
+                        echo '<td>' . $cliente['email'] . '</td>';
+                        echo '<td>' . $cliente['telefone'] . '</td>';
                         echo '<td class="text-center ' . $statusClasse . '">' . $statusTexto . '</td>';
                         echo '<td>' .  date ("d/m/Y H:i",strtotime ($cliente['created_at'])) . '</td>';
                         echo '</tr>';
                     }
                 } else {
-                    echo "<tr><td colspan='6' class='text-center text-muted'>Nenhum cliente encontrado</td></tr>";
+                    echo "<script>alert('Nenhum cliente encontrado'); history.back();</script>";
                 }
                 ?>
             </tbody>
@@ -145,7 +148,7 @@ if (!$result) {
     </div>
 
     <div class="d-flex justify-content-end mt-3">
-        <a href="../relatorios/relatorios.php" class="btn btn-secondary">Voltar</a>
+        <a href="../funcionarios/home.php" class="btn btn-secondary">Voltar</a>
     </div>
 </div>
 

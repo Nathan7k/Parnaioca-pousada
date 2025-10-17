@@ -11,6 +11,9 @@
 <body>
     <?php
     include '../config/conexao.php';
+    include '../../login/verificar_permissao.php';
+
+    verificarPerfil(['admin']);
 
     $id_acomodacao = $_GET['id'];
 
@@ -27,6 +30,9 @@
 
                 <label>Nome</label>
                 <input type="text" name="nome" value="<?php echo $array['nome'] ?>">
+
+                <label>Tipo</label>
+                <input type="text" name="tipo" value="<?php echo $array['tipo'] ?>">
             
 
                 <label>valor</label>

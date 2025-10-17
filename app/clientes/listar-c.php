@@ -47,8 +47,8 @@
                     <th>estado</th>
                     <th>cidade</th>
                     <th>Status</th>
-                    <th>reg_date</th>
-                    <th>up_date</th>
+                    <th>data de registro</th>
+                    <th>última alteração</th>
                     <th>Ações</th>
                 </tr>
 

@@ -1,8 +1,9 @@
 <?php
 include '../config/conexao.php';
+include  '../config/functions.php';
+session_start();
 
-
-$acomodacao_id = $_GET['acomodacao_id'] ?? null;
+$acomodacao_id = $_GET['acomodacao_id'] ?? 0;
 
 if (!$acomodacao_id) {
     die("Acomodação não informada!");
@@ -13,14 +14,12 @@ $sqlacom = "SELECT nome, numero, valor
                 WHERE id = $acomodacao_id";
 
 $resacom = mysqli_query($con, $sqlacom);
-
 $acomodacao = mysqli_fetch_assoc($resacom);
 
-if(!$acomodacao){
-    die ("<script>alert('Acomodação não encontrada.'); history.back();</script>");
+if (!$acomodacao) {
+
+    die("<script>alert('Acomodação não encontrada.'); history.back();</script>");
 }
-
-
 
 $sqlupcheckin = "UPDATE hospedagens 
                  SET status = 'cancelado' 
@@ -29,30 +28,37 @@ $sqlupcheckin = "UPDATE hospedagens
 
 $resultup = mysqli_query($con, $sqlupcheckin);
 
-if($resultup && mysqli_affected_rows($con) > 0){
+if ($resultup && mysqli_affected_rows($con) > 0) {
 
-
-
-$sqlupacom = "UPDATE acomodacoes 
+    $sqlupacom = "UPDATE acomodacoes 
                 SET ocupacao = 0 
                 WHERE id = $acomodacao_id";
 
-$acomres = mysqli_query($con, $sqlupacom);
+    $acomres = mysqli_query($con, $sqlupacom);
 
-$sqlLiberaVaga = "UPDATE estacionamento 
+    $sqlLiberaVaga = "UPDATE estacionamento 
                     SET ocupada = 0 
                     WHERE acomodacao_id = $acomodacao_id 
                     AND ocupada = 1";
 
-mysqli_query($con, $sqlLiberaVaga);
+    mysqli_query($con, $sqlLiberaVaga);
 
-echo "<script>alert('Reserva cancelada com sucesso.'); window.location.href='hospedes.php';</script>";
-exit;
 
+    if ($acomres) {
+
+        $usuario_id = $_SESSION['usuario_id'] ?? 0;
+        $nome = $acomodacao['nome'];
+
+
+        registrarLog($con, $usuario_id, "Cancelou a reserva $nome", "hospedagens", $acomodacao_id);
+
+
+        echo "<script>alert('Reserva cancelada com sucesso.'); window.location.href='hospedes.php';</script>";
+    } else {
+        echo "<script>alert('Erro ao atualizar acomodação.'); history.back();</script>";
+    }
 } else {
-    echo "<script>alert('Para cancelar é necessário que o status esteja como Reservado.'); history.back();</script>";
-exit;
-
+    echo "<script>alert('Nenhuma reserva com status Reservado encontrada.'); history.back();</script>";
 }
 
 ?>

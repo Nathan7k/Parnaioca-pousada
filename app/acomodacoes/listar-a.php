@@ -17,6 +17,9 @@
     <?php
     include '../config/conexao.php';
     include '../funcionarios/navbar-listas.php';
+    include '../../login/verificar_permissao.php';
+
+    verificarPerfil(['admin']);
 
     
 
@@ -52,7 +55,7 @@
 
                 while ($array = mysqli_fetch_array($busca)) {
                     $id = $array['id'];
-                    $tipo_id = $array['tipo_id'];
+                    $tipo = $array['tipo'];
                     $nome  = $array['nome'];
                     $valor = $array['valor'];
                     $capacidade_maxima = $array['capacidade_maxima'];
@@ -62,7 +65,7 @@
 
                     <tr>
                         <td><?php echo $id ?></td>
-                        <td><?php echo ($tipo_id == 1) ? 'Suíte' : 'Apartamento' ?></td>
+                        <td><?php echo $tipo ?></td>
                         <td><?php echo $nome ?></td>
                         <td><?php echo $valor ?></td>
                         <td><?php echo $capacidade_maxima ?></td>

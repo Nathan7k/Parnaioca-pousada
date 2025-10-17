@@ -92,12 +92,7 @@ $total_geral = $total_consumo + $valor_acomodacao;
     </table>
 
     <div class="d-flex justify-content-between mt-4">
-        <a href="javascript:window.print()" class="btn btn-outline-primary">
-             Imprimir
-        </a>
-        <a href="../relatorios/relatorios.php" class="btn btn-secondary">
-             Voltar
-        </a>
+        <a href="../reservas/hospedes.php" class="btn btn-secondary">Voltar</a>
     </div>
 </div>
 

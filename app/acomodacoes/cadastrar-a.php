@@ -11,6 +11,9 @@
 </head>
 <?php
 include '../config/conexao.php';
+include '../../login/verificar_permissao.php';
+
+    verificarPerfil(['admin']);
 
 ?>
 
@@ -27,22 +30,22 @@ include '../config/conexao.php';
 
                 <div class="input-box">
                     <label class="label">tipo</label>
-                    <input type="text" name="tipo_id" placeholder="Tipo">
+                    <input type="text" name="tipo" placeholder="Tipo">
                 </div>
 
                 <div class="input-box">
                     <label class="label">Valor</label>
-                    <input type="number" name="valor" placeholder="valor">
+                    <input type="number" name="valor" placeholder="valor" min = 0>
                 </div>
 
                 <div class="input-box">
                     <label class="label">Capacidade máxima</label>
-                    <input type="number" name="capacidade_maxima" placeholder="capacidade máxima">
+                    <input type="number" name="capacidade_maxima" placeholder="capacidade máxima" min = 0>
                 </div>
 
                 <div class="input-box">
                     <label class="label">Quantidade de vagas</label>
-                    <input type="number" name="quantidade_vagas" id="quantidade_vagas" min="0" required placeholder="quantidade de vagas">
+                    <input type="number" name="quantidade_vagas" id="quantidade_vagas" min=0 max = 5 required placeholder="quantidade de vagas">
                 </div></br></br>
 
                 <button class="bt_confirm" type="submit" class="login">Enviar</button>

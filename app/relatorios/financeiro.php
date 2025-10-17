@@ -1,5 +1,8 @@
 <?php
 include_once("../config/conexao.php");
+include './navBar.php';
+
+
 
 $data_inicial = $_GET['inicio'] ?? '';
 $data_final = $_GET['fim'] ?? '';
@@ -42,6 +45,7 @@ $result = mysqli_query($con, $sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+    <link href="../assets/css/root.css" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -86,7 +90,7 @@ $result = mysqli_query($con, $sql);
             ?>
                     <tr class="text-center">
                         <td><?= date('d/m/Y', strtotime($row['data_checkin'])) ?></td>
-                        <td><?= htmlspecialchars($row['nome_acomodacao']) ?></td>
+                        <td><?= $row['nome_acomodacao'] ?></td>
                         <td><?= number_format($row['total_hospedagem'], 2, ',', '.') ?></td>
                         <td><?= number_format($row['total_frigobar'], 2, ',', '.') ?></td>
                         <td><strong><?= number_format($row['total_geral'], 2, ',', '.') ?></strong></td>
@@ -111,7 +115,7 @@ $result = mysqli_query($con, $sql);
     </table>
 
     <div class="d-flex justify-content-end mt-3">
-        <a href="../relatorios/relatorios.php" class="btn btn-secondary">Voltar</a>
+        <a href="../funcionarios/home.php" class="btn btn-secondary">Voltar</a>
     </div>
 </div>
 

@@ -13,6 +13,9 @@
 <body>
     <?php
     include '../config/conexao.php';
+    include '../../login/verificar_permissao.php';
+
+    verificarPerfil(['admin']);
 
     $id_funcionario = $_GET['id'];
 

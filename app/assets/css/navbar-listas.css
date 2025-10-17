@@ -2,13 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Arial", sans-serif;
 }
 
 
 .navbar {
     background-color: #003366; 
-    padding: 15px 20px;
+    padding: 10px 20px;
 }
 
 .navbar-container {
@@ -23,13 +23,13 @@
 .nav-item {
     color: #ffffff; 
     text-decoration: none;
-    font-weight: bold;
-    padding: 0 15px;
+    margin: 7px;
+    font-size: 20px;
     transition: color 0.3s;
 }
 
 .nav-item:hover {
-    color: #3498db; 
+    color: #ffffff; 
 }
 
 h2 {

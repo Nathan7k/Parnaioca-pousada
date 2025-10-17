@@ -9,9 +9,13 @@
 
 <body>
     <?php
+    session_start();
     include '../config/conexao.php';
     include '../config/functions.php';
-    session_start();
+    include '../../login/verificar_permissao.php';
+    verificarPerfil(['admin']);
+
+    
 
     if (isset($_GET['id'])) {
 
